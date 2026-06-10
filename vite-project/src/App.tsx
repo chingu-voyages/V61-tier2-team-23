@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+import { getRandomWord } from './utils/words'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -115,6 +116,15 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
+
+
+      {/* Example of random word generation */}
+      <section>
+        <button onClick={() => {
+          document.getElementById('randomWord').innerHTML = getRandomWord()
+        }}>Generate A random Word</button>
+        <p className='' id='randomWord'></p>
+      </section>
     </>
   )
 }
