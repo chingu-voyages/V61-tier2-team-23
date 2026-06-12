@@ -24,7 +24,7 @@ export const useWordle = (solution: string) => {
 
 		// Check if player used all 6 attempts
 		if (nextTurn >= 6) {
-			console.log("Game Over! You\'ve used up all 6 attempts.");
+			console.log("Game Over! You've used up all 6 attempts.");
 		}
 	};
 

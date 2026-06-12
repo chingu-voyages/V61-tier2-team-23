@@ -500,3 +500,14 @@ const words = [
   "Wrist",
   "Zebra",
 ];
+
+
+/**
+ * Provides a random word from the words list.
+ * @returns {string}
+ */
+
+export function getRandomWord(): string {
+    const randIndex = Math.floor(Math.random() * words.length);
+    return words[randIndex];
+}
