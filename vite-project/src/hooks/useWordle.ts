@@ -4,8 +4,16 @@ export const useWordle = (solution: string) => {
 	const [turn, setTurn] = useState<number>(0); // Tracks current attempt (0 - 5)
 	const [guesses, setGuesses] = useState<string[]>([]); // array of guessed words
 	const [isCorrect, setIsCorrect] = useState<boolean>(false);
+	const [error, setError] = useState<string>('');
 
 	const handleGuess = (currentGuess: string) => {
+		setError('');
+
+		if (currentGuess.length != 5) {
+			setError('Word must be 5 letters.');
+			return;
+		}
+
 		// Adds current guess to end of guesses array
 		const updatedGuesses = guesses.concat(currentGuess);
 		// Update state of guesses array with new array
@@ -28,5 +36,5 @@ export const useWordle = (solution: string) => {
 		}
 	};
 
-	return { turn, guesses, isCorrect, handleGuess };
+	return { turn, guesses, isCorrect, error, handleGuess };
 };
