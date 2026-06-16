@@ -36,5 +36,5 @@ export const useWordle = (solution: string) => {
 		}
 	};
 
-	return { turn, guesses, isCorrect, error, handleGuess };
+	return { turn, guesses, isCorrect, error, setError, handleGuess };
 };
