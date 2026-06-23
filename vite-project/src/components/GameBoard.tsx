@@ -1,19 +1,23 @@
 import { useState } from "react";
 import GuessLog from "./GuessLog";
 import { Keyboard } from "./Keyboard";
+import { getRandomWord } from '../data/words'
+import { useWordle } from '../hooks/useWordle';
+
 
 function Gameboard() {
-  const letterStatuses = {
-    A: "present",
-    C: "correct",
-    E: "absent",
-    L: "correct",
-    N: "absent",
-    S: "absent",
-    T: "absent",
-  } as const;
 
   const [currentGuess, setCurrentGuess] = useState<string[]>([]);
+  const [solution] = useState<string>(() => getRandomWord().toUpperCase());
+
+  const { 
+    history, 
+    letterStatuses, 
+    error, 
+    setError, 
+    gameOver, 
+    submitGuess
+  } = useWordle(solution);
 
   const addLetter = (letter: string) => {
     setCurrentGuess((prev) => {
@@ -27,20 +31,21 @@ function Gameboard() {
   };
 
   const handleKeyPress = (key: string) => {
-    if (key === "ENTER") {
-      console.log("Submit:", currentGuess.join(""));
-      return;
-    }
+      if (key === "ENTER") {
+        if (submitGuess(currentGuess)) {
+          setCurrentGuess([]);
+        }
+        return;
+      }
 
-    if (key === "BACKSPACE") {
-      removeLetter();
-      return;
-    }
+      if (key === "BACKSPACE") {
+        removeLetter();
+        return;
+      }
 
-    addLetter(key);
-  };
+      addLetter(key);
+    };
 
-  console.log(currentGuess);
 
   return (
     <div className="h-[90vh] p-8 mt-20 bg-[#f3f3f1]">
@@ -49,8 +54,24 @@ function Gameboard() {
           GUESSIFY
         </h1>
       </div>
-      <GuessLog currentGuess={currentGuess} />
+
+      <GuessLog currentGuess={currentGuess} prevState={history} />
       <Keyboard onKeyPress={handleKeyPress} letterStatuses={letterStatuses} />
+
+      {error && (
+        <div className="error-modal">
+          <div className="error-modal-content">
+            <p>{error}</p>
+            <button onClick={() => setError('')}>OK</button>
+          </div>
+        </div>
+      )}
+
+      {gameOver && (
+        <p>
+          Game Over.
+        </p>
+      )}
     </div>
   );
 }
