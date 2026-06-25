@@ -7,7 +7,14 @@ const Signup = () => {
   return (
     <div className="h-[100vh] bg-[#f3f3f1]">
       <div className="flex flex-col text-center items-center justify-center">
-        <div className="text-[#9da0a1] mt-10">--- Back to home</div>
+        <div
+          className="text-[#9da0a1] mt-10 hover:cursor-pointer"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          --- Back to home
+        </div>
         <div className="text-black font-bold text-[40px] mt-4">
           Create account
         </div>
