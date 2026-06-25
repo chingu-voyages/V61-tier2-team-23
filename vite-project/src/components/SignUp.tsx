@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="h-[100vh] bg-[#f3f3f1]">
       <div className="flex flex-col text-center items-center justify-center">
@@ -62,7 +65,12 @@ const Signup = () => {
         </div>
         <div className="w-[200px] flex flex-row text-center items-center justify-center mt-8">
           <p className="text-[12px] text-[#9da0a1]">Already have an account?</p>
-          <p className="text-[12px] text-[#6aaa64] ml-2 hover:cursor-pointer">
+          <p
+            className="text-[12px] text-[#6aaa64] ml-2 hover:cursor-pointer"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
             Sign in
           </p>
         </div>
