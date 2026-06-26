@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { LetterStatus, History } from "../types/types";
+import { isValidWord } from '../data/words';
 
 export const useWordle = (solution: string) => {
 
@@ -80,6 +81,11 @@ export const useWordle = (solution: string) => {
 
 			if (guessStr.length !== 5) {
 				setError('Word must be 5 letters.');
+				return false;
+			}
+
+			if (!isValidWord(guessStr)) {
+				setError('Not in Word List, Try Something Else.');
 				return false;
 			}
 
