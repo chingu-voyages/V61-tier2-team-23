@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../images/Guessifylogo.png";
 import { useNavigate } from "react-router-dom";
 
