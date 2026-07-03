@@ -5,7 +5,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-[100vh] bg-[#f3f3f1] flex flex-col text-center items-center">
+    <div className="h-[90vh] bg-[#f3f3f1] flex flex-col text-center items-center">
       <div className="text-[50px] font-bold mt-8">GUESSIFY</div>
       <div className="text-[#9da0a1] mt-2">
         Guess the hidden word. You have 6 tries.

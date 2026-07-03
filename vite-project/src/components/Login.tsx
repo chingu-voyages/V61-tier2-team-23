@@ -1,10 +1,32 @@
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
-const Login = () => {
+type GoogleUser = {
+  email: string;
+  name: string;
+  picture: string;
+  sub: string;
+};
+
+type User = {
+  name: string;
+  picture: string;
+  sub: string;
+};
+
+type AppProps = {
+  user: User;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
+};
+
+const Login = ({ user, setUser }: AppProps) => {
   const navigate = useNavigate();
 
+  console.log(user);
+
   return (
-    <div className="h-[100vh] bg-[#f3f3f1]">
+    <div className="h-[90vh] bg-[#f3f3f1]">
       <div className="flex flex-col text-center items-center justify-center">
         <div
           className="text-[#9da0a1] mt-10 hover:cursor-pointer"
@@ -12,18 +34,32 @@ const Login = () => {
             navigate("/");
           }}
         >
-          --- Back to home
+          ⟵ Back to home
         </div>
         <div className="text-black font-bold text-[30px] mt-4">
           Welcome back
         </div>
         <div className="text-[#9da0a1]">Sign in to continue your streak</div>
         <div className="w-[500px] p-3 bg-white text-[14px] font-semibold border-1 border-gray-200 rounded-md mt-8 hover:cursor-pointer">
-          Continue with Google
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              if (credentialResponse.credential) {
+                const getUser: GoogleUser = jwtDecode(
+                  credentialResponse.credential,
+                );
+                setUser(getUser);
+                navigate("/game");
+              }
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
         </div>
-        <div className="text-gray-400 text-[12px] mt-6">
-          --------------------------------------------------- Or
-          ---------------------------------------------------
+        <div className="flex items-center w-[500px] mt-6">
+          <div className="flex-1 border-t border-gray-300"></div>
+          <span className="px-4 text-xs text-gray-400">OR</span>
+          <div className="flex-1 border-t border-gray-300"></div>
         </div>
         <div className="w-[500px] flex flex-col text-start mt-6">
           <div className="mt-4">
