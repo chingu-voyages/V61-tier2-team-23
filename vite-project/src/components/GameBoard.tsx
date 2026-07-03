@@ -1,13 +1,10 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import GuessLog from "./GuessLog";
 import { Keyboard } from "./Keyboard";
 import { useWordle } from '../hooks/useWordle';
 import { LoseModal, WinModal } from "./Modal";
 
-
-
 function Gameboard() {
-
   const [currentGuess, setCurrentGuess] = useState<string[]>([]);
 
   const { 
@@ -33,7 +30,8 @@ function Gameboard() {
     setCurrentGuess((prev) => prev.slice(0, -1));
   };
 
-  const handleKeyPress = (key: string) => {
+  const handleKeyPress = useCallback(
+    (key: string) => {
       if (key === "ENTER") {
         if (submitGuess(currentGuess)) {
           setCurrentGuess([]);
@@ -47,10 +45,30 @@ function Gameboard() {
       }
 
       addLetter(key);
+    },
+    [currentGuess, submitGuess],
+  );
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const key = event.key.toUpperCase();
+
+      if (/^[A-Z]$/.test(key)) {
+        handleKeyPress(key);
+      } else if (event.key === "Enter") {
+        handleKeyPress("ENTER");
+      } else if (event.key === "Backspace") {
+        event.preventDefault();
+        handleKeyPress("BACKSPACE");
+      }
     };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyPress]);
 
   return (
-    <div className="h-[90vh] p-8 mt-20 bg-[#f3f3f1]">
+    <div className="h-[90vh] p-8 bg-[#f3f3f1]">
       <div className="flex items-center justify-center text-center">
         <h1 className="w-[500px] text-[40px] font-bold border-b border-2px border-gray-300">
           GUESSIFY
@@ -64,11 +82,10 @@ function Gameboard() {
         <div className="error-modal">
           <div className="error-modal-content">
             <p>{error}</p>
-            <button onClick={() => setError('')}>OK</button>
+            <button onClick={() => setError("")}>OK</button>
           </div>
         </div>
       )}
-
       {gameOver && isCorrect && (
         <WinModal resetGame={resetGame} />
       )}
