@@ -1,14 +1,14 @@
 import { useState } from "react";
 import GuessLog from "./GuessLog";
 import { Keyboard } from "./Keyboard";
-import { getRandomWord } from '../data/words'
 import { useWordle } from '../hooks/useWordle';
+import { LoseModal, WinModal } from "./Modal";
+
 
 
 function Gameboard() {
 
   const [currentGuess, setCurrentGuess] = useState<string[]>([]);
-  const [solution] = useState<string>(() => getRandomWord().toUpperCase());
 
   const { 
     history, 
@@ -16,8 +16,11 @@ function Gameboard() {
     error, 
     setError, 
     gameOver, 
-    submitGuess
-  } = useWordle(solution);
+    isCorrect,
+    submitGuess,
+    resetGame,
+    solution
+  } = useWordle();
 
   const addLetter = (letter: string) => {
     setCurrentGuess((prev) => {
@@ -46,7 +49,6 @@ function Gameboard() {
       addLetter(key);
     };
 
-
   return (
     <div className="h-[90vh] p-8 mt-20 bg-[#f3f3f1]">
       <div className="flex items-center justify-center text-center">
@@ -58,7 +60,7 @@ function Gameboard() {
       <GuessLog currentGuess={currentGuess} prevState={history} />
       <Keyboard onKeyPress={handleKeyPress} letterStatuses={letterStatuses} />
 
-      {error && (
+      {error && !gameOver && (
         <div className="error-modal">
           <div className="error-modal-content">
             <p>{error}</p>
@@ -67,10 +69,13 @@ function Gameboard() {
         </div>
       )}
 
-      {gameOver && (
-        <p>
-          Game Over.
-        </p>
+      {gameOver && isCorrect && (
+        <WinModal resetGame={resetGame} />
+      )}
+      {gameOver && !isCorrect && (
+       
+        <LoseModal resetGame={resetGame} solution={solution} />
+        
       )}
     </div>
   );
