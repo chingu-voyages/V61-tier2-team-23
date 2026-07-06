@@ -103,7 +103,7 @@ function Gameboard() {
       <Keyboard onKeyPress={handleKeyPress} letterStatuses={letterStatuses} />
 
       {gameOver && isCorrect && (
-        <WinModal resetGame={resetGame} />
+        <WinModal tries={history.size} resetGame={resetGame} />
       )}
 
       {gameOver && !isCorrect && (
