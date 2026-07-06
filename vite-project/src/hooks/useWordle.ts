@@ -93,6 +93,11 @@ export const useWordle = () => {
 			return false;
 		}
 
+		if (history.has(guessStr)) {
+			setError('You Already Guessed This Word, Try Different Word!');
+			return false;
+		}
+
 		const { rowStatus, updatedKeyboard } = evaluateGuess(currentGuess);
 
 		setLetterStatuses(updatedKeyboard);
