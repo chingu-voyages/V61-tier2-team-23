@@ -75,7 +75,7 @@ function Gameboard() {
         text: error,
         duration: 2000,
         callback: () => {setError('')},
-        // gravity: "top",
+        gravity: "top",
         position: "center",
         offset: {
           y: "40vh",
