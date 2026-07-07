@@ -1,8 +1,9 @@
 interface WinModalProp {
+    tries: number;
     resetGame: () => void;
 }
 
-export function WinModal({ resetGame }: WinModalProp) {
+export function WinModal({ tries, resetGame }: WinModalProp) {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm">
             <div className="flex flex-col items-center bg-white p-8 rounded-3xl shadow-2xl w-[400px] border border-gray-100">
@@ -12,7 +13,7 @@ export function WinModal({ resetGame }: WinModalProp) {
                 
                 
                 <h2 className="text-3xl font-bold text-gray-900">Impressive !</h2>
-                <p className="text-gray-500 mt-2 mb-8">You got it in X guesses</p>
+                <p className="text-gray-500 mt-2 mb-8">You got it in {tries} guesses</p>
                 
                 
                 <div className="flex gap-4 mb-8">

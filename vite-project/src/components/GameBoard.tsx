@@ -3,6 +3,8 @@ import GuessLog from "./GuessLog";
 import { Keyboard } from "./Keyboard";
 import { useWordle } from '../hooks/useWordle';
 import { LoseModal, WinModal } from "./Modal";
+import Toastify from 'toastify-js';
+import "toastify-js/src/toastify.css";
 
 function Gameboard() {
   const [currentGuess, setCurrentGuess] = useState<string[]>([]);
@@ -67,6 +69,28 @@ function Gameboard() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyPress]);
 
+  useEffect(() => {
+    if (error && !gameOver) {
+      Toastify({
+        text: error,
+        duration: 2000,
+        callback: () => {setError('')},
+        gravity: "top",
+        position: "center",
+        offset: {
+          y: "40vh",
+          x: "0vh"
+        },
+        style: {
+          background: "black",
+          color: "white",
+          fontWeight: "bold",
+          transition: "none"
+        }
+      }).showToast();
+    }
+  }, [error, setError, gameOver]);
+
   return (
     <div className="min-h-[90vh] p-8 bg-[#f3f3f1]">
       <div className="flex items-center justify-center text-center">
@@ -78,21 +102,12 @@ function Gameboard() {
       <GuessLog currentGuess={currentGuess} prevState={history} />
       <Keyboard onKeyPress={handleKeyPress} letterStatuses={letterStatuses} />
 
-      {error && !gameOver && (
-        <div className="error-modal">
-          <div className="error-modal-content">
-            <p>{error}</p>
-            <button onClick={() => setError("")}>OK</button>
-          </div>
-        </div>
-      )}
       {gameOver && isCorrect && (
-        <WinModal resetGame={resetGame} />
+        <WinModal tries={history.size} resetGame={resetGame} />
       )}
+
       {gameOver && !isCorrect && (
-       
         <LoseModal resetGame={resetGame} solution={solution} />
-        
       )}
     </div>
   );

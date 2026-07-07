@@ -134,7 +134,7 @@ const Footer = () => {
                 className="hover:cursor-pointer"
                 onClick={() => {
                   window.open(
-                    "https://www.linkedin.com/",
+                    "https://www.linkedin.com/in/tanishqkumarpatel",
                     "_blank",
                     "noreferrer",
                   );
@@ -143,7 +143,7 @@ const Footer = () => {
               <GitHubIcon
                 className="hover:cursor-pointer"
                 onClick={() => {
-                  window.open("https://github.com/", "_blank", "noreferrer");
+                  window.open("https://github.com/Tanishqkumarpatel", "_blank", "noreferrer");
                 }}
               />
             </div>
