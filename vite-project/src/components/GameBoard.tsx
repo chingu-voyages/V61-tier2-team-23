@@ -92,7 +92,7 @@ function Gameboard() {
   }, [error, setError, gameOver]);
 
   return (
-    <div className="h-[90vh] p-8 bg-[#f3f3f1]">
+    <div className="min-h-[90vh] p-8 bg-[#f3f3f1]">
       <div className="flex items-center justify-center text-center">
         <h1 className="w-[500px] text-[40px] font-bold border-b border-2px border-gray-300">
           GUESSIFY
