@@ -8,7 +8,7 @@ import "toastify-js/src/toastify.css";
 
 function Gameboard() {
   const [currentGuess, setCurrentGuess] = useState<string[]>([]);
-
+  const [isLoadingHint, setIsLoadingHint] = useState<boolean>(false);
   const { 
     history, 
     letterStatuses, 
@@ -18,7 +18,9 @@ function Gameboard() {
     isCorrect,
     submitGuess,
     resetGame,
-    solution
+    solution,
+    hint,
+    setHint
   } = useWordle();
 
   const addLetter = (letter: string) => {
@@ -91,12 +93,48 @@ function Gameboard() {
     }
   }, [error, setError, gameOver]);
 
+  async function getHint() {
+    try {
+      const res = await fetch('/gemini', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ solution }),
+      });
+
+      const data = await res.json();
+      
+      if (!res.ok || !data.hint) {
+        return "Hint Generation Failed, Please Try Again!";
+      }
+
+      return data.hint;
+
+    } catch (err) {
+      console.error(err);
+      return "Hint Generation Failed, Please Try Again!";
+    }
+  }
+
   return (
     <div className="min-h-[90vh] p-8 bg-[#f3f3f1]">
       <div className="flex items-center justify-center text-center">
         <h1 className="w-[500px] text-[40px] font-bold border-b border-2px border-gray-300">
           GUESSIFY
         </h1>
+      </div>
+
+      <div className="flex flex-col items-center justify-center text-center">
+        <button onClick={async () => {
+          setIsLoadingHint(true);
+          const result = await getHint();
+          setHint(result);
+          setIsLoadingHint(false);
+        }} disabled={isLoadingHint}>
+          Hint
+        </button>
+        {hint && (<h3>
+          {isLoadingHint ? "Generating Hint" : hint}
+        </h3>)}
       </div>
 
       <GuessLog currentGuess={currentGuess} prevState={history} />

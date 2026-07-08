@@ -35,6 +35,7 @@ export const useWordle = () => {
 		  "BACKSPACE": "unused",
 		} as Record<string, LetterStatus>);
 
+	const [hint, setHint] = useState<string>("");
 	const [solution, setSolution] = useState<string>(() => getRandomWord().toUpperCase());
 	const [history, setHistory] = useState<History>(new Map());
 	const [isCorrect, setIsCorrect] = useState<boolean>(false);
@@ -119,6 +120,7 @@ export const useWordle = () => {
 	};
 
 	const resetGame = () => {
+		setHint("");
 		setSolution(getRandomWord().toUpperCase());
         setHistory(new Map());
         setIsCorrect(false);
@@ -135,6 +137,8 @@ export const useWordle = () => {
 	isCorrect, 
     submitGuess,
 	resetGame,
-	solution
+	solution,
+	hint,
+	setHint
   };
 };
