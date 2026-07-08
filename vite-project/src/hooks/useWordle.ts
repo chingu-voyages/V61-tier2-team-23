@@ -24,7 +24,6 @@ export const useWordle = () => {
 		  "J": "unused",
 		  "K": "unused",
 		  "L": "unused",
-		  "ENTER": "unused",
 		  "Z": "unused",
 		  "X": "unused",
 		  "C": "unused",
@@ -32,9 +31,8 @@ export const useWordle = () => {
 		  "B": "unused",
 		  "N": "unused",
 		  "M": "unused",
-		  "BACKSPACE": "unused",
 		} as Record<string, LetterStatus>);
-
+		
 	const [solution, setSolution] = useState<string>(() => getRandomWord().toUpperCase());
 	const [history, setHistory] = useState<History>(new Map());
 	const [isCorrect, setIsCorrect] = useState<boolean>(false);
@@ -45,9 +43,9 @@ export const useWordle = () => {
 	const gameOver = turn >= 6 || isCorrect;
 
 	const evaluateGuess = (guess: string[]) => {
-	const solutionLetters = solution.split('');
-	const rowStatus = new Array<LetterStatus>(5).fill("absent");
-	const updatedKeyboard = { ...letterStatuses };
+		const solutionLetters = solution.split('');
+		const rowStatus = new Array<LetterStatus>(5).fill("absent");
+		const updatedKeyboard = { ...letterStatuses };
 	
       guess.forEach((letter, i) => {
         if (letter === solutionLetters[i]) {
@@ -78,6 +76,19 @@ export const useWordle = () => {
       return { rowStatus, updatedKeyboard };
     };
 
+
+	/**
+	 * Return True if the guess use all the letter that are revealed (either correct or present)
+	 * @param guess 
+	 */
+	// TODO: Uncomment After after hardmode helper is ready
+	
+	// const checkKeyUsed = (guess: string) : boolean => {
+	// 	return Object.entries(letterStatuses)
+	// 		.filter(([, status]) => status === "correct" || status === "present")
+	// 		.every(([letter]) => guess.includes(letter));
+	// };
+
 	const submitGuess = (currentGuess: string[]) => {
 		setError('');
 		
@@ -97,11 +108,17 @@ export const useWordle = () => {
 			setError('You Already Guessed This Word, Try Different Word!');
 			return false;
 		}
+		// TODO: Uncomment After after hardmode helper is ready
+		// hardMode and !checkKeyUsed
+		// if (!checkKeyUsed(guessStr)) {
+		// 	setError('Must Use All Revealed Letter In The Guess.');
+		// 	return false;
+		// }
 
 		const { rowStatus, updatedKeyboard } = evaluateGuess(currentGuess);
 
 		setLetterStatuses(updatedKeyboard);
-		// BUG: Same Guess wont be saved in History because history is a MAP.
+
 		setHistory(prev => {
 			const nextHistory = new Map(prev);
 			nextHistory.set(guessStr, rowStatus);
