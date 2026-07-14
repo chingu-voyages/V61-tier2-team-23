@@ -6,7 +6,6 @@ import {
   getDoc,
   getDocs,
   updateDoc,
-  increment,
 } from "firebase/firestore";
 import { db } from "../firebase.ts";
 
