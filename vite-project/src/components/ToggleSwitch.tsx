@@ -1,18 +1,16 @@
-import { useState } from "react";
-
 interface ToggleProps {
   label: string;
+  enabled: boolean;
+  onChange: (enabled: boolean) => void;
 }
 
-export default function Toggle({ label }: ToggleProps) {
-  const [enabled, setEnabled] = useState(false);
-
+export default function Toggle({ label, enabled, onChange }: ToggleProps) {
   return (
     <div className="mb-5 flex items-center justify-between">
       <span>{label}</span>
 
       <button
-        onClick={() => setEnabled(!enabled)}
+        onClick={() => onChange(!enabled)}
         className={`
           relative
           h-7

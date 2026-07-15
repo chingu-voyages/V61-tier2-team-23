@@ -10,7 +10,8 @@ import {
 import { db } from "../firebase.ts";
 
 export interface UserData {
-  id: string;
+  uid: string;
+  name: string;
   email: string;
   nGames: number;
   wins: number;
@@ -18,7 +19,8 @@ export interface UserData {
 }
 
 export async function createUser(user: UserData) {
-  await setDoc(doc(db, "users", user.id), {
+  await setDoc(doc(db, "users", user.uid), {
+    name: user.name,
     email: user.email,
     nGames: user.nGames,
     wins: user.wins,

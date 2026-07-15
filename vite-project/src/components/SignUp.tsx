@@ -8,6 +8,7 @@ import GoogleLoginButton from "./GoogleLogin";
 const Signup = () => {
   const { setUser } = useUser();
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,7 @@ const Signup = () => {
         // Create Firestore document
         await createUser({
           uid: authUser.uid,
+          name: name,
           email: authUser.email!,
           nGames: 0,
           wins: 0,
@@ -32,6 +34,7 @@ const Signup = () => {
         });
         setUser({
           uid: authUser.uid,
+          name: name,
           email: authUser.email!,
           nGames: 0,
           wins: 0,
@@ -77,6 +80,9 @@ const Signup = () => {
             <div className="">
               <p className="text-[10px] font-bold">NAME</p>
               <input
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
                 type="text"
                 className="w-[494px] bg-white ml-1 mt-2 p-3 px-4 border-1 border-gray-200 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
                 placeholder="Ada Chen"
