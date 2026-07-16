@@ -39,9 +39,9 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
       >
         <div className="p-6 text-gray-900">
           <div className="flex flex-row justify-between">
-            <h2 className="mb-6 text-xl font-bold">Settings</h2>
+            <h2 className="mb-6 text-xl font-bold text-white">Settings</h2>
             <p
-              className="hover:cursor-pointer border-1 h-6 w-6 rounded-full flex text-center items-center justify-center"
+              className="hover:cursor-pointer border-1 h-6 w-6 rounded-full flex text-center items-center justify-center text-white"
               onClick={onClose}
             >
               X
