@@ -65,18 +65,18 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
           </div>
           {user.user === null ? null : (
             <div className="flex flex-col">
-              <h1 className="flex text-left mt-4">STATS</h1>
+              <h1 className="flex text-left mt-4 text-white">STATS</h1>
               <div className="flex flex-row mt-2">
                 <div className="w-20 p-4 rounded-lg bg-gray-200">
-                  <h1 className="font-bold text-lg">0</h1>
+                  <h1 className="font-bold text-lg">{user.user.nGames}</h1>
                   <p className="text-md">Played</p>
                 </div>
                 <div className="w-20 p-4 rounded-lg bg-gray-200 ml-4">
-                  <h1 className="font-bold text-lg">0</h1>
+                  <h1 className="font-bold text-lg">{user.user.wins}</h1>
                   <p className="text-md">Won</p>
                 </div>
                 <div className="w-20 p-4 rounded-lg bg-gray-200 ml-4">
-                  <h1 className="font-bold text-lg">0</h1>
+                  <h1 className="font-bold text-lg">{user.user.winStreak}</h1>
                   <p className="text-md">Streak</p>
                 </div>
               </div>
