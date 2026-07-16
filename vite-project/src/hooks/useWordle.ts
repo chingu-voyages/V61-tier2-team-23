@@ -2,6 +2,8 @@ import { useState } from 'react';
 import type { LetterStatus, History } from "../types/types";
 import { isValidWord, getRandomWord } from '../data/words';
 import { useSettings } from '../components/context/SettingsContext';
+import { useUser } from '../components/context/UserContext';
+import { updateUser } from '../services/firestore';
 
 export const useWordle = () => {
 	const getInitialKeyboard = () => (
@@ -41,6 +43,7 @@ export const useWordle = () => {
 	const [error, setError] = useState<string>('');
 	const [letterStatuses, setLetterStatuses] = useState<Record<string, LetterStatus>>(getInitialKeyboard());
 	const { hardMode } = useSettings();
+	const { user, setUser } = useUser();
 	  
 	const turn = history.size;
 	const gameOver = turn >= 6 || isCorrect;
@@ -91,6 +94,53 @@ export const useWordle = () => {
 			.every(([letter]) => guess.includes(letter));
 	};
 
+	async function handleWin() {
+		if (!user) return;
+		const newGamesPlayed = user.nGames + 1;
+		const newWins = user.wins + 1;
+		const newStreak = user.winStreak + 1;
+
+		setUser({
+		...user,
+		nGames: newGamesPlayed,
+		wins: newWins,
+		winStreak: newStreak
+		});
+
+		try {
+		await updateUser(user.uid, {
+			nGames: newGamesPlayed,
+			wins: newWins,
+			winStreak: newStreak
+		});
+
+		} catch (error) {
+		console.error("Failed to save to database:", error);
+		}
+	};
+
+	async function handleLose() {
+		if (!user) return;
+		const newGamesPlayed = user.nGames + 1;
+		const newStreak = 0;
+
+		setUser({
+		...user,
+		nGames: newGamesPlayed,
+		winStreak: newStreak
+		});
+
+		try {
+		await updateUser(user.uid, {
+			nGames: newGamesPlayed,
+			winStreak: newStreak
+		});
+
+		} catch (error) {
+		console.error("Failed to save to database:", error);
+		}
+	};
+
 	const submitGuess = (currentGuess: string[]) => {
 		setError('');
 		
@@ -127,9 +177,11 @@ export const useWordle = () => {
 		});
 
 		if (guessStr === solution) {
+			handleWin();
 			setIsCorrect(true);
 			setError('You guessed the word!');
 		} else if (turn + 1 >= 6) {
+			handleLose();
 			setError("Game Over! Out of attempts.");
 		}
 		
