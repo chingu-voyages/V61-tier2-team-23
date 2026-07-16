@@ -9,26 +9,12 @@ import Login from "./components/Login";
 import Signup from "./components/SignUp";
 // import { LetterStatus } from './types/types';
 
-type User = {
-  name: string;
-  picture: string;
-  sub: string;
-};
-
-type AppProps = {
-  user: User;
-  setUser: React.Dispatch<React.SetStateAction<User>>;
-};
-
-function App({ user, setUser }: AppProps) {
+function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route
-        path="/register"
-        element={<Signup user={user} setUser={setUser} />}
-      />
-      <Route path="/login" element={<Login user={user} setUser={setUser} />} />
+      <Route path="/register" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/game" element={<Gameboard />} />
     </Routes>
   );

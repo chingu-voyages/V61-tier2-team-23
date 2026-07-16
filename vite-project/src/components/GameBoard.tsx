@@ -1,24 +1,28 @@
 import { useCallback, useEffect, useState } from "react";
 import GuessLog from "./GuessLog";
+import { useUser } from "./context/UserContext";
 import { Keyboard } from "./Keyboard";
-import { useWordle } from '../hooks/useWordle';
+import { useWordle } from "../hooks/useWordle";
 import { LoseModal, WinModal } from "./Modal";
-import Toastify from 'toastify-js';
+import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
 function Gameboard() {
+  const { user } = useUser();
   const [currentGuess, setCurrentGuess] = useState<string[]>([]);
-
-  const { 
-    history, 
-    letterStatuses, 
-    error, 
-    setError, 
-    gameOver, 
+  const [isLoadingHint, setIsLoadingHint] = useState<boolean>(false);
+  const {
+    history,
+    letterStatuses,
+    error,
+    setError,
+    gameOver,
     isCorrect,
     submitGuess,
     resetGame,
-    solution
+    solution,
+    hint,
+    setHint,
   } = useWordle();
 
   const addLetter = (letter: string) => {
@@ -74,29 +78,74 @@ function Gameboard() {
       Toastify({
         text: error,
         duration: 2000,
-        callback: () => {setError('')},
+        callback: () => {
+          setError("");
+        },
         gravity: "top",
         position: "center",
         offset: {
           y: "40vh",
-          x: "0vh"
+          x: "0vh",
         },
         style: {
           background: "black",
           color: "white",
           fontWeight: "bold",
-          transition: "none"
-        }
+          transition: "none",
+        },
       }).showToast();
     }
   }, [error, setError, gameOver]);
 
+  async function getHint() {
+    try {
+      const res = await fetch("/gemini", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ solution }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.hint) {
+        return "Hint Generation Failed, Please Try Again!";
+      }
+
+      return data.hint;
+    } catch (err) {
+      console.error(err);
+      return "Hint Generation Failed, Please Try Again!";
+    }
+  }
+
   return (
     <div className="min-h-[90vh] p-8 bg-[#f3f3f1]">
       <div className="flex items-center justify-center text-center">
-        <h1 className="w-[500px] text-[40px] font-bold border-b border-2px border-gray-300">
-          GUESSIFY
-        </h1>
+        {!user ? (
+          <h1 className="w-[500px] text-[40px] font-bold border-b border-2px border-gray-300">
+            GUESSIFY
+          </h1>
+        ) : (
+          <h1 className="w-[500px] text-[40px] font-bold border-b border-2px border-gray-300">
+            Welcome back, <br></br>
+            {user.name}!
+          </h1>
+        )}
+      </div>
+
+      <div className="flex flex-col items-center justify-center text-center">
+        <button
+          onClick={async () => {
+            setIsLoadingHint(true);
+            const result = await getHint();
+            setHint(result);
+            setIsLoadingHint(false);
+          }}
+          disabled={isLoadingHint}
+        >
+          Hint
+        </button>
+        {hint && <h3>{isLoadingHint ? "Generating Hint" : hint}</h3>}
       </div>
 
       <GuessLog currentGuess={currentGuess} prevState={history} />
