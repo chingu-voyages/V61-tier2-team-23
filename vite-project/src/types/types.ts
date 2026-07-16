@@ -5,4 +5,13 @@ export interface KeyboardProps {
   letterStatuses: Record<string, LetterStatus>;
 }
 
-export type History = Map<string,LetterStatus[]>;
+export type History = Map<string, LetterStatus[]>;
+
+export interface UserData {
+  uid: string;
+  name: string;
+  email: string;
+  nGames: number;
+  wins: number;
+  winStreak: number;
+}

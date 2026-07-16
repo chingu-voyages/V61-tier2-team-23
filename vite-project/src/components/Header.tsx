@@ -1,28 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
+import SettingsPanel from "./Settings";
 import { useState } from "react";
+import { useUser } from "./context/UserContext";
 
-type User = {
-  name: string;
-  picture: string;
-  sub: string;
-};
-
-type AppProps = {
-  user: User;
-  setUser: React.Dispatch<React.SetStateAction<User>>;
-};
-
-const Header = ({ user, setUser }: AppProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    if (isOpen === false) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
-    }
-  };
+const Header = () => {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const { user, setUser } = useUser();
+  console.log(user);
 
   const getCurrentDateFormatted = (): string => {
     const now = new Date();
@@ -73,7 +58,12 @@ const Header = ({ user, setUser }: AppProps) => {
   return (
     <div className="h-[15vh] md:h-[10vh] bg-[#171640] text-white flex flex-col md:flex-row items-start md:items-center text-center justify-between text-[14px] md:text-[16px]">
       <div className="md:w-[16vw] lg:w-[33vw] flex items-center text-center mt-4 md:mt-0">
-        <div className="ml-[3vw] text-[24px] lg:text-[30px] md:text-[14px]">
+        <div
+          className="ml-[3vw] text-[24px] lg:text-[30px] md:text-[14px] hover:cursor-pointer"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
           GUESSIFY
         </div>
       </div>
@@ -81,23 +71,20 @@ const Header = ({ user, setUser }: AppProps) => {
         {getCurrentDateFormatted()}
       </div>
       <div className="flex flex-col md:flex-row items-left md:items-center md:w-[33vw] justify-end mr-[3vw]">
-        {user.name === "" ? (
+        {!user ? (
           <SettingsIcon
             className="hover:cursor-pointer"
-            onClick={() => {
-              handleOpen();
-            }}
+            onClick={() => setSettingsOpen((prev) => !prev)}
           />
         ) : (
           <>
             <div className="flex text-center items-center">
-              <div className="w-[100px] md:text-[14px] lg:text-[16px] mr-[20px]">
+              <div className="w-[100px]flex text-right items-right justify-end md:text-[14px] lg:text-[16px] mr-[10px]">
                 {user.name}
               </div>
-              <img src={user.picture} className="rounded-full h-[60px]"></img>
               <button
                 onClick={() => {
-                  setUser({ name: "", picture: "", sub: "" });
+                  setUser(null);
                   navigate("/");
                 }}
                 className="bg-white text-black text-sm p-2 ml-4 mr-4 rounded-md hover:cursor-pointer"
@@ -107,13 +94,15 @@ const Header = ({ user, setUser }: AppProps) => {
             </div>
             <SettingsIcon
               className="hover:cursor-pointer"
-              onClick={() => {
-                handleOpen();
-              }}
+              onClick={() => setSettingsOpen((prev) => !prev)}
             />
           </>
         )}
       </div>
+      <SettingsPanel
+        isOpen={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+      />
     </div>
   );
 };

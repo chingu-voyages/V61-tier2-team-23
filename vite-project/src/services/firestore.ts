@@ -1,5 +1,5 @@
 import {
-  addDoc,
+  setDoc,
   collection,
   deleteDoc,
   doc,
@@ -9,15 +9,23 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase.ts";
 
-export interface User {
+export interface UserData {
+  uid: string;
+  name: string;
   email: string;
-  password: string;
+  nGames: number;
+  wins: number;
+  winStreak: number;
 }
 
-export async function createUser(user: User) {
-  const docRef = await addDoc(collection(db, "users"), user);
-
-  return docRef.id;
+export async function createUser(user: UserData) {
+  await setDoc(doc(db, "users", user.uid), {
+    name: user.name,
+    email: user.email,
+    nGames: user.nGames,
+    wins: user.wins,
+    winStreak: user.winStreak,
+  });
 }
 
 export async function getUsers() {
@@ -42,7 +50,7 @@ export async function getUser(id: string) {
   };
 }
 
-export async function updateUser(id: string, updates: Partial<User>) {
+export async function updateUser(id: string, updates: Partial<UserData>) {
   await updateDoc(doc(db, "users", id), updates);
 }
 

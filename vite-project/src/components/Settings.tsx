@@ -1,61 +1,89 @@
-// import { useState } from "react";
+import Toggle from "./ToggleSwitch";
+import { useUser } from "./context/UserContext";
+import { useSettings } from "./context/SettingsContext";
 
-// type ToggleSwitchProps = {
-//   defaultOn?: boolean;
-//   onChange?: (isOn: boolean) => void;
-// };
+interface SettingsPanelProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
 
-const Settings = () => {
-  //   const [darkMode, setDarkMode] = useState(false);
+export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
+  const user = useUser();
+  const { hardMode, setHardMode, darkMode, setDarkMode } = useSettings();
 
-  //   const handleDarkMode = () => {
-  //     if (darkMode === false) {
-  //       setDarkMode(true);
-  //     } else {
-  //       setDarkMode(false);
-  //     }
-  //   };
-
-  //   export default function ToggleSwitch({
-  //   defaultOn = false,
-  //   onChange,
-  // }: ToggleSwitchProps) {
-  //   const [isOn, setIsOn] = useState(defaultOn);
-
-  //   function toggle() {
-  //     const newValue = !isOn;
-  //     setIsOn(newValue);
-  //     onChange?.(newValue);
-  //   }
+  // console.log("Hard Mode", hardMode);
+  // console.log("Dark Mode", darkMode);
 
   return (
-    <div>
-      <div>
-        <h1>Settings</h1>
-        <p>X</p>
-      </div>
-      <div>
-        <div>
-          <h1>Dark Mode</h1>
-          <p>Switch theme</p>
-        </div>
-        <div>
-          {/* <button
-            onClick={toggle}
-            className={`relative h-8 w-14 rounded-full transition-colors duration-300 ${
-              isOn ? "bg-green-500" : "bg-gray-300"
-            }`}
-          >
-            <span
-              className={`absolute top-1 h-6 w-6 rounded-full bg-white shadow-md transition-transform duration-300 ${
-                isOn ? "translate-x-7" : "translate-x-1"
-              }`}
-            />
-          </button> */}
-        </div>
-      </div>
-    </div>
-  );
-};
+    <>
+      {/* Dark overlay */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black/30" onClick={onClose} />
+      )}
 
-export default Settings;
+      <aside
+        className={`
+          fixed
+          top-0
+          right-0
+          h-full
+          w-80
+          bg-white
+          dark:bg-slate-800
+          shadow-xl
+          transition-transform
+          duration-300
+          z-50
+          ${isOpen ? "translate-x-0" : "translate-x-full"}
+        `}
+      >
+        <div className="p-6 text-gray-900">
+          <div className="flex flex-row justify-between">
+            <h2 className="mb-6 text-xl font-bold text-white">Settings</h2>
+            <p
+              className="hover:cursor-pointer border-1 h-6 w-6 rounded-full flex text-center items-center justify-center text-white"
+              onClick={onClose}
+            >
+              X
+            </p>
+          </div>
+
+          <div className="text-gray-900 border-b-1 dark:text-white">
+            <Toggle
+              label="Hard Mode"
+              enabled={hardMode}
+              onChange={setHardMode}
+            />
+          </div>
+
+          <div className="mt-4 text-gray-900 border-b-1 dark:text-white">
+            <Toggle
+              label="Dark Mode"
+              enabled={darkMode}
+              onChange={setDarkMode}
+            />
+          </div>
+          {user.user === null ? null : (
+            <div className="flex flex-col">
+              <h1 className="flex text-left mt-4">STATS</h1>
+              <div className="flex flex-row mt-2">
+                <div className="w-20 p-4 rounded-lg bg-gray-200">
+                  <h1 className="font-bold text-lg">0</h1>
+                  <p className="text-md">Played</p>
+                </div>
+                <div className="w-20 p-4 rounded-lg bg-gray-200 ml-4">
+                  <h1 className="font-bold text-lg">0</h1>
+                  <p className="text-md">Won</p>
+                </div>
+                <div className="w-20 p-4 rounded-lg bg-gray-200 ml-4">
+                  <h1 className="font-bold text-lg">0</h1>
+                  <p className="text-md">Streak</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </aside>
+    </>
+  );
+}
