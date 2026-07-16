@@ -1,5 +1,6 @@
 import Toggle from "./ToggleSwitch";
 import { useUser } from "./context/UserContext";
+import { useSettings } from "./context/SettingsContext";
 
 interface SettingsPanelProps {
   isOpen: boolean;
@@ -8,6 +9,11 @@ interface SettingsPanelProps {
 
 export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
   const user = useUser();
+  const { hardMode, setHardMode, darkMode, setDarkMode } = useSettings();
+
+  // console.log("Hard Mode", hardMode);
+  // console.log("Dark Mode", darkMode);
+
   return (
     <>
       {/* Dark overlay */}
@@ -43,11 +49,19 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
           </div>
 
           <div className="text-gray-900 border-b-1 dark:text-white">
-            <Toggle label="Add Hints" />
+            <Toggle
+              label="Hard Mode"
+              enabled={hardMode}
+              onChange={setHardMode}
+            />
           </div>
 
           <div className="mt-4 text-gray-900 border-b-1 dark:text-white">
-            <Toggle label="Dark Mode" />
+            <Toggle
+              label="Dark Mode"
+              enabled={darkMode}
+              onChange={setDarkMode}
+            />
           </div>
           {user.user === null ? null : (
             <div className="flex flex-col">

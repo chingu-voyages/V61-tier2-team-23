@@ -16,7 +16,11 @@ export default function GoogleLoginButton() {
       const profile = await getGoogleUser(authUser.uid);
 
       if (!profile) {
-        await createGoogleUser(authUser.uid, authUser.email!);
+        await createGoogleUser(
+          authUser.uid,
+          authUser.displayName ?? "",
+          authUser.email!,
+        );
       } else {
         setUser(profile);
         console.log(profile);

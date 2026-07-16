@@ -26,9 +26,14 @@ export async function getGoogleUser(uid: string): Promise<UserData | null> {
   return snapshot.data() as UserData;
 }
 
-export async function createGoogleUser(uid: string, email: string) {
+export async function createGoogleUser(
+  uid: string,
+  name: string,
+  email: string,
+) {
   await setDoc(doc(db, "users", uid), {
     uid,
+    name,
     email,
     nGames: 0,
     wins: 0,

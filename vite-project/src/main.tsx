@@ -7,19 +7,22 @@ import { UserProvider } from "./components/context/UserContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { SettingsProvider } from "./components/context/SettingsContext";
 
 function Root({}) {
   const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   return (
     <UserProvider>
-      <BrowserRouter>
-        <GoogleOAuthProvider clientId={CLIENT_ID}>
-          <Header />
-          <App />
-          <Footer />
-        </GoogleOAuthProvider>
-      </BrowserRouter>
+      <SettingsProvider>
+        <BrowserRouter>
+          <GoogleOAuthProvider clientId={CLIENT_ID}>
+            <Header />
+            <App />
+            <Footer />
+          </GoogleOAuthProvider>
+        </BrowserRouter>
+      </SettingsProvider>
     </UserProvider>
   );
 }

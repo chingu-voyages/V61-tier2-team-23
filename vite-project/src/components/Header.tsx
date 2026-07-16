@@ -7,7 +7,7 @@ import { useUser } from "./context/UserContext";
 const Header = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const { user, setUser } = useUser();
-  // console.log(user);
+  console.log(user);
 
   const getCurrentDateFormatted = (): string => {
     const now = new Date();
@@ -58,7 +58,12 @@ const Header = () => {
   return (
     <div className="h-[15vh] md:h-[10vh] bg-[#171640] text-white flex flex-col md:flex-row items-start md:items-center text-center justify-between text-[14px] md:text-[16px]">
       <div className="md:w-[16vw] lg:w-[33vw] flex items-center text-center mt-4 md:mt-0">
-        <div className="ml-[3vw] text-[24px] lg:text-[30px] md:text-[14px]">
+        <div
+          className="ml-[3vw] text-[24px] lg:text-[30px] md:text-[14px] hover:cursor-pointer"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
           GUESSIFY
         </div>
       </div>
@@ -74,8 +79,8 @@ const Header = () => {
         ) : (
           <>
             <div className="flex text-center items-center">
-              <div className="w-[100px] md:text-[14px] lg:text-[16px] mr-[40px]">
-                {user.email}
+              <div className="w-[100px]flex text-right items-right justify-end md:text-[14px] lg:text-[16px] mr-[10px]">
+                {user.name}
               </div>
               <button
                 onClick={() => {
