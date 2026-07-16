@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import type { LetterStatus, History } from "../types/types";
 import { isValidWord, getRandomWord } from '../data/words';
+import { useSettings } from '../components/context/SettingsContext';
+import { useUser } from '../components/context/UserContext';
+import { updateUser } from '../services/firestore';
 
 export const useWordle = () => {
 	const getInitialKeyboard = () => (
@@ -24,7 +27,6 @@ export const useWordle = () => {
 		  "J": "unused",
 		  "K": "unused",
 		  "L": "unused",
-		  "ENTER": "unused",
 		  "Z": "unused",
 		  "X": "unused",
 		  "C": "unused",
@@ -32,7 +34,6 @@ export const useWordle = () => {
 		  "B": "unused",
 		  "N": "unused",
 		  "M": "unused",
-		  "BACKSPACE": "unused",
 		} as Record<string, LetterStatus>);
 
 	const [hint, setHint] = useState<string>("");
@@ -41,14 +42,16 @@ export const useWordle = () => {
 	const [isCorrect, setIsCorrect] = useState<boolean>(false);
 	const [error, setError] = useState<string>('');
 	const [letterStatuses, setLetterStatuses] = useState<Record<string, LetterStatus>>(getInitialKeyboard());
+	const { hardMode } = useSettings();
+	const { user, setUser } = useUser();
 	  
 	const turn = history.size;
 	const gameOver = turn >= 6 || isCorrect;
 
 	const evaluateGuess = (guess: string[]) => {
-	const solutionLetters = solution.split('');
-	const rowStatus = new Array<LetterStatus>(5).fill("absent");
-	const updatedKeyboard = { ...letterStatuses };
+		const solutionLetters = solution.split('');
+		const rowStatus = new Array<LetterStatus>(5).fill("absent");
+		const updatedKeyboard = { ...letterStatuses };
 	
       guess.forEach((letter, i) => {
         if (letter === solutionLetters[i]) {
@@ -79,6 +82,65 @@ export const useWordle = () => {
       return { rowStatus, updatedKeyboard };
     };
 
+
+	/**
+	 * Return True if the guess use all the letter that are revealed (either correct or present)
+	 * @param guess 
+	 */
+	
+	const checkKeyUsed = (guess: string) : boolean => {
+		return Object.entries(letterStatuses)
+			.filter(([, status]) => status === "correct" || status === "present")
+			.every(([letter]) => guess.includes(letter));
+	};
+
+	async function handleWin() {
+		if (!user) return;
+		const newGamesPlayed = user.nGames + 1;
+		const newWins = user.wins + 1;
+		const newStreak = user.winStreak + 1;
+
+		setUser({
+		...user,
+		nGames: newGamesPlayed,
+		wins: newWins,
+		winStreak: newStreak
+		});
+
+		try {
+		await updateUser(user.uid, {
+			nGames: newGamesPlayed,
+			wins: newWins,
+			winStreak: newStreak
+		});
+
+		} catch (error) {
+		console.error("Failed to save to database:", error);
+		}
+	};
+
+	async function handleLose() {
+		if (!user) return;
+		const newGamesPlayed = user.nGames + 1;
+		const newStreak = 0;
+
+		setUser({
+		...user,
+		nGames: newGamesPlayed,
+		winStreak: newStreak
+		});
+
+		try {
+		await updateUser(user.uid, {
+			nGames: newGamesPlayed,
+			winStreak: newStreak
+		});
+
+		} catch (error) {
+		console.error("Failed to save to database:", error);
+		}
+	};
+
 	const submitGuess = (currentGuess: string[]) => {
 		setError('');
 		
@@ -98,11 +160,16 @@ export const useWordle = () => {
 			setError('You Already Guessed This Word, Try Different Word!');
 			return false;
 		}
+		
+		if (hardMode && !checkKeyUsed(guessStr)) {
+			setError('Must Use All Revealed Letter In The Guess.');
+			return false;
+		}
 
 		const { rowStatus, updatedKeyboard } = evaluateGuess(currentGuess);
 
 		setLetterStatuses(updatedKeyboard);
-		// BUG: Same Guess wont be saved in History because history is a MAP.
+
 		setHistory(prev => {
 			const nextHistory = new Map(prev);
 			nextHistory.set(guessStr, rowStatus);
@@ -110,9 +177,11 @@ export const useWordle = () => {
 		});
 
 		if (guessStr === solution) {
+			handleWin();
 			setIsCorrect(true);
 			setError('You guessed the word!');
 		} else if (turn + 1 >= 6) {
+			handleLose();
 			setError("Game Over! Out of attempts.");
 		}
 		

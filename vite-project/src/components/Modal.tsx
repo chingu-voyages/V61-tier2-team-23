@@ -1,9 +1,12 @@
+import { useUser } from "./context/UserContext";
+
 interface WinModalProp {
     tries: number;
     resetGame: () => void;
 }
 
 export function WinModal({ tries, resetGame }: WinModalProp) {
+    const {user} = useUser();
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm">
             <div className="flex flex-col items-center bg-white p-8 rounded-3xl shadow-2xl w-[400px] border border-gray-100">
@@ -16,13 +19,13 @@ export function WinModal({ tries, resetGame }: WinModalProp) {
                 <p className="text-gray-500 mt-2 mb-8">You got it in {tries} guesses</p>
                 
                 
-                <div className="flex gap-4 mb-8">
-                    {['X\nPlayed', 'X %\nWin %', 'X\nStreak'].map((stat, i) => (
+                {user && (<div className="flex gap-4 mb-8">
+                    {[`${user.nGames}\nPlayed`, `${user.wins/user.nGames * 100} %\nWin %`, `${user.winStreak}\nStreak`].map((stat, i) => (
                         <div key={i} className="flex flex-col items-center bg-gray-100 rounded-lg p-4 w-25 h-20">
                             <span className="text-xl font-bold whitespace-pre-line text-center">{stat}</span>
                         </div>
                     ))}
-                </div>
+                </div>)};
 
                 
                 <button onClick={resetGame} className="w-full bg-green-600 text-white font-semibold py-4 rounded-xl hover:bg-green-700 transition-colors">
