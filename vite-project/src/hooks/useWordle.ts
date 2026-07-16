@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { LetterStatus, History } from "../types/types";
 import { isValidWord, getRandomWord } from '../data/words';
+import { useSettings } from '../components/context/SettingsContext';
 
 export const useWordle = () => {
 	const getInitialKeyboard = () => (
@@ -39,6 +40,7 @@ export const useWordle = () => {
 	const [isCorrect, setIsCorrect] = useState<boolean>(false);
 	const [error, setError] = useState<string>('');
 	const [letterStatuses, setLetterStatuses] = useState<Record<string, LetterStatus>>(getInitialKeyboard());
+	const { hardMode } = useSettings();
 	  
 	const turn = history.size;
 	const gameOver = turn >= 6 || isCorrect;
@@ -82,13 +84,12 @@ export const useWordle = () => {
 	 * Return True if the guess use all the letter that are revealed (either correct or present)
 	 * @param guess 
 	 */
-	// TODO: Uncomment After after hardmode helper is ready
 	
-	// const checkKeyUsed = (guess: string) : boolean => {
-	// 	return Object.entries(letterStatuses)
-	// 		.filter(([, status]) => status === "correct" || status === "present")
-	// 		.every(([letter]) => guess.includes(letter));
-	// };
+	const checkKeyUsed = (guess: string) : boolean => {
+		return Object.entries(letterStatuses)
+			.filter(([, status]) => status === "correct" || status === "present")
+			.every(([letter]) => guess.includes(letter));
+	};
 
 	const submitGuess = (currentGuess: string[]) => {
 		setError('');
@@ -109,12 +110,11 @@ export const useWordle = () => {
 			setError('You Already Guessed This Word, Try Different Word!');
 			return false;
 		}
-		// TODO: Uncomment After after hardmode helper is ready
-		// hardMode and !checkKeyUsed
-		// if (!checkKeyUsed(guessStr)) {
-		// 	setError('Must Use All Revealed Letter In The Guess.');
-		// 	return false;
-		// }
+		
+		if (hardMode && !checkKeyUsed(guessStr)) {
+			setError('Must Use All Revealed Letter In The Guess.');
+			return false;
+		}
 
 		const { rowStatus, updatedKeyboard } = evaluateGuess(currentGuess);
 
