@@ -25,13 +25,13 @@ const Footer = () => {
             Scrum Master
           </div>
           <div className="flex items-center text-center justify-between">
-            <div className="text-[12px] lg:text-[18px]">Shivani</div>
+            <div className="text-[12px] lg:text-[18px]">Shivani Bhardwaj</div>
             <div className="ml-[20px]">
               <LinkedInIcon
                 className="hover:cursor-pointer"
                 onClick={() => {
                   window.open(
-                    "https://www.linkedin.com/",
+                    "https://www.linkedin.com/in/shivanibdwj",
                     "_blank",
                     "noreferrer",
                   );
@@ -40,7 +40,7 @@ const Footer = () => {
               <GitHubIcon
                 className="hover:cursor-pointer"
                 onClick={() => {
-                  window.open("https://github.com/", "_blank", "noreferrer");
+                  window.open("https://github.com/shivanibhardwaj0911", "_blank", "noreferrer");
                 }}
               />
             </div>
@@ -57,7 +57,7 @@ const Footer = () => {
                 className="hover:cursor-pointer"
                 onClick={() => {
                   window.open(
-                    "https://www.linkedin.com/",
+                    "https://www.linkedin.com/in/qudroh-kadejo-08ba53319/",
                     "_blank",
                     "noreferrer",
                   );
@@ -67,6 +67,27 @@ const Footer = () => {
                 className="hover:cursor-pointer"
                 onClick={() => {
                   window.open("https://github.com/", "_blank", "noreferrer");
+                }}
+              />
+            </div>
+          </div>
+          <div className="flex items-center text-center justify-between">
+            <div className="text-[12px] lg:text-[18px]">Viann Cheng</div>
+            <div className="ml-[20px]">
+              <LinkedInIcon
+                className="hover:cursor-pointer"
+                onClick={() => {
+                  window.open(
+                    "https://www.linkedin.com/in/vc01",
+                    "_blank",
+                    "noreferrer",
+                  );
+                }}
+              />
+              <GitHubIcon
+                className="hover:cursor-pointer"
+                onClick={() => {
+                  window.open("https://github.com/vivchc", "_blank", "noreferrer");
                 }}
               />
             </div>
