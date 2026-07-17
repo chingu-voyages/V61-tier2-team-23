@@ -1,6 +1,6 @@
 import { keyboardRows } from "./keyboardLayout.ts";
 import type { KeyboardProps } from "../types/types.ts";
-import { Key } from "./Key";
+import { Key } from "./Key.tsx";
 
 export function Keyboard({ onKeyPress, letterStatuses }: KeyboardProps) {
   return (
