@@ -48,6 +48,11 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
 
+  // Toggle Tailwind dark mode
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+  }, [darkMode]);
+
   return (
     <SettingsContext.Provider
       value={{

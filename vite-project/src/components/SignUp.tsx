@@ -8,8 +8,10 @@ import GoogleLoginButton from "./GoogleLogin";
 const Signup = () => {
   const { setUser } = useUser();
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -18,6 +20,8 @@ const Signup = () => {
     e.preventDefault();
 
     if (password.length > 7 && password === confirmPassword) {
+      setPasswordError(false);
+      setEmailError(false);
       setLoading(true);
       try {
         // Create Firebase Auth account
@@ -40,20 +44,20 @@ const Signup = () => {
           wins: 0,
           winStreak: 0,
         });
-        alert("Account created!");
       } catch (err) {
         console.error(err);
-        alert("Registration failed. Email may need to contain @ and .");
+        setEmailError(true);
       }
-
       setLoading(false);
+      navigate("/game");
     } else {
-      alert("Passwords must be at least 8 characters and must match.");
+      setEmailError(false);
+      setPasswordError(true);
     }
   }
 
   return (
-    <div className="h-[90vh] bg-[#f3f3f1]">
+    <div className="h-[90vh] bg-[#f3f3f1] dark:bg-[#121213]">
       <div className="flex flex-col text-center items-center justify-center">
         <div
           className="text-[#9da0a1] mt-10 hover:cursor-pointer"
@@ -63,7 +67,7 @@ const Signup = () => {
         >
           ⟵ Back to home
         </div>
-        <div className="text-black font-bold text-[40px] mt-4">
+        <div className="text-black dark:text-white font-bold text-[40px] mt-4">
           Create account
         </div>
         <div className="text-[#9da0a1]">
@@ -78,52 +82,74 @@ const Signup = () => {
         <form onSubmit={handleRegister}>
           <div className="w-[500px] flex flex-col text-start mt-6">
             <div className="">
-              <p className="text-[10px] font-bold">NAME</p>
+              <p className="text-[10px] font-bold dark:text-gray-600">NAME</p>
               <input
                 onChange={(e) => {
                   setName(e.target.value);
                 }}
+                required
                 type="text"
-                className="w-[494px] bg-white ml-1 mt-2 p-3 px-4 border-1 border-gray-200 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
                 placeholder="Ada Chen"
               ></input>
             </div>
             <div className="mt-4">
-              <p className="text-[10px] font-bold">EMAIL</p>
+              <p className="text-[10px] font-bold dark:text-gray-600">EMAIL</p>
               <input
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
+                required
                 type="email"
-                className="w-[494px] bg-white ml-1 mt-2 p-3 px-4 border-1 border-gray-200 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
                 placeholder="adaChen@email.com"
               ></input>
             </div>
+            {emailError === true ? (
+              <div className="flex text-center items-center justify-center">
+                <h1 className="mt-6 text-sm text-red-400">
+                  Email must contain @ and .
+                </h1>
+              </div>
+            ) : null}
             <div className="mt-4">
-              <p className="text-[10px] font-bold">PASSWORD</p>
+              <p className="text-[10px] font-bold dark:text-gray-600">
+                PASSWORD
+              </p>
               <input
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
+                required
                 type="password"
-                placeholder="8 + characters"
-                className="w-[494px] bg-white ml-1 mt-2 p-3 px-4 border-1 border-gray-200 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                placeholder="8+ characters"
+                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
               ></input>
             </div>
             <div className="mt-4">
-              <p className="text-[10px] font-bold">CONFIRM PASSWORD</p>
+              <p className="text-[10px] font-bold dark:text-gray-600">
+                CONFIRM PASSWORD
+              </p>
               <input
                 onChange={(e) => {
                   setConfirmPassword(e.target.value);
                 }}
+                required
                 type="password"
-                placeholder="8 + characters"
-                className="w-[494px] bg-white ml-1 mt-2 p-3 px-4 border-1 border-gray-200 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                placeholder="8+ characters"
+                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
               ></input>
             </div>
           </div>
+          {passwordError === true ? (
+            <div>
+              <h1 className="mt-6 text-sm text-red-400">
+                Passwords must be at least 8 characters and must match.
+              </h1>
+            </div>
+          ) : null}
           <button
-            className="w-[500px] p-3 bg-[#6aaa64] border-1 rounded-lg text-white font-semibold mt-8 hover:cursor-pointer"
+            className="w-[500px] p-3 bg-[#6aaa64] rounded-lg text-white font-semibold mt-8 hover:cursor-pointer"
             disabled={loading}
           >
             {loading ? "Creating..." : "Create Account"}

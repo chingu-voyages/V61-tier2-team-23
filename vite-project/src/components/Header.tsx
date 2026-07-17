@@ -57,9 +57,9 @@ const Header = () => {
 
   return (
     <div className="h-[15vh] md:h-[10vh] bg-[#171640] text-white flex flex-col md:flex-row items-start md:items-center text-center justify-between text-[14px] md:text-[16px]">
-      <div className="md:w-[16vw] lg:w-[33vw] flex items-center text-center mt-4 md:mt-0">
+      <div className="md:w-60 flex items-center text-center mt-4 md:mt-0">
         <div
-          className="ml-[3vw] text-[24px] lg:text-[30px] md:text-[14px] hover:cursor-pointer"
+          className="flex w-60 ml-[3vw] text-[24px] lg:text-[30px] md:text-[14px] hover:cursor-pointer"
           onClick={() => {
             navigate("/");
           }}
@@ -67,19 +67,19 @@ const Header = () => {
           GUESSIFY
         </div>
       </div>
-      <div className="text-left md:text-center ml-2 md:ml-0 mt-8 md:mt-0 md:text-[14px] lg:text-[16px]">
+      <div className="flex md:justify-center w-60 text-left md:text-center ml-2 md:ml-0 mt-8 md:mt-0 md:text-[14px] lg:text-[16px]">
         {getCurrentDateFormatted()}
       </div>
-      <div className="flex flex-col md:flex-row items-left md:items-center md:w-[33vw] justify-end mr-[3vw]">
+      <div className="flex flex-col w-60 md:flex-row items-left md:items-center justify-end">
         {!user ? (
           <SettingsIcon
-            className="hover:cursor-pointer"
+            className="hover:cursor-pointer mr-[3vw]"
             onClick={() => setSettingsOpen((prev) => !prev)}
           />
         ) : (
           <>
             <div className="flex text-center items-center">
-              <div className="w-[100px]flex text-right items-right justify-end md:text-[14px] lg:text-[16px] mr-[10px]">
+              <div className="w-[100px] flex text-right items-right justify-end md:text-[14px] lg:text-[16px] mr-[10px]">
                 {user.name}
               </div>
               <button
@@ -93,7 +93,7 @@ const Header = () => {
               </button>
             </div>
             <SettingsIcon
-              className="hover:cursor-pointer"
+              className="hover:cursor-pointer mr-[3vw]"
               onClick={() => setSettingsOpen((prev) => !prev)}
             />
           </>

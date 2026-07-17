@@ -39,9 +39,11 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
       >
         <div className="p-6 text-gray-900">
           <div className="flex flex-row justify-between">
-            <h2 className="mb-6 text-xl font-bold text-white">Settings</h2>
+            <h2 className="mb-6 text-xl font-bold text-black dark:text-white">
+              Settings
+            </h2>
             <p
-              className="hover:cursor-pointer border-1 h-6 w-6 rounded-full flex text-center items-center justify-center text-white"
+              className="hover:cursor-pointer border-1 h-6 w-6 rounded-full flex text-center items-center justify-center text-black dark:text-white"
               onClick={onClose}
             >
               X
@@ -65,7 +67,9 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
           </div>
           {user.user === null ? null : (
             <div className="flex flex-col">
-              <h1 className="flex text-left mt-4 text-white">STATS</h1>
+              <h1 className="flex text-left mt-4 text-gray-600 dark:text-white">
+                Stats
+              </h1>
               <div className="flex flex-row mt-2">
                 <div className="w-20 p-4 rounded-lg bg-gray-200">
                   <h1 className="font-bold text-lg">{user.user.nGames}</h1>

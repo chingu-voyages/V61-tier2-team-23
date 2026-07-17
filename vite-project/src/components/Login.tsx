@@ -9,12 +9,14 @@ const Login = () => {
   const { setUser } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
 
+    setError(false);
     setLoading(true);
 
     try {
@@ -24,11 +26,11 @@ const Login = () => {
       // Retrieve Firestore profile
       const profile = await getCurrentUser(authUser.uid);
 
-      console.log("Authenticated User:", authUser);
-      console.log("Firestore Profile:", profile);
+      // console.log("Authenticated User:", authUser);
+      // console.log("Firestore Profile:", profile);
 
       if (!profile) {
-        alert("No profile found.");
+        setError(true);
         return;
       }
 
@@ -36,14 +38,14 @@ const Login = () => {
       navigate("/game");
     } catch (error) {
       console.error(error);
-      alert("Invalid email or password.");
+      setError(true);
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="h-[90vh] bg-[#f3f3f1]">
+    <div className="h-[90vh] bg-[#f3f3f1] dark:bg-[#121213]">
       <div className="flex flex-col text-center items-center justify-center">
         <div
           className="text-[#9da0a1] mt-10 hover:cursor-pointer"
@@ -53,7 +55,7 @@ const Login = () => {
         >
           ⟵ Back to home
         </div>
-        <div className="text-black font-bold text-[30px] mt-4">
+        <div className="text-black dark:text-white font-bold text-[30px] mt-4">
           Welcome back
         </div>
         <div className="text-[#9da0a1]">Sign in to continue your streak</div>
@@ -66,21 +68,23 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <div className="w-[500px] flex flex-col text-start mt-6">
             <div className="mt-4">
-              <p className="text-[10px] font-bold">EMAIL</p>
+              <p className="text-[10px] font-bold dark:text-gray-600">EMAIL</p>
               <input
                 onChange={(e) => setEmail(e.target.value)}
-                type="text"
-                className="w-[494px] bg-white ml-1 mt-2 p-3 px-4 border-1 border-gray-200 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                type="email"
+                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
                 placeholder="adaChen@email.com"
               ></input>
             </div>
             <div className="mt-4">
-              <p className="text-[10px] font-bold">PASSWORD</p>
+              <p className="text-[10px] font-bold dark:text-gray-600">
+                PASSWORD
+              </p>
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
-                placeholder="8 + characters"
-                className="w-[494px] bg-white ml-1 mt-2 p-3 px-4 border-1 border-gray-200 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                placeholder="8+ characters"
+                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
               ></input>
             </div>
             <div className="w-[500px] flex justify-end mt-1">
@@ -89,8 +93,15 @@ const Login = () => {
               </p>
             </div>
           </div>
+          {error === true ? (
+            <div className="flex text-center items-center justify-center">
+              <h1 className="mt-6 text-sm text-red-400">
+                Invalid email or password.
+              </h1>
+            </div>
+          ) : null}
           <button
-            className="w-[500px] p-3 bg-[#6aaa64] border-1 rounded-lg text-white font-semibold mt-8 hover:cursor-pointer"
+            className="w-[500px] p-3 bg-[#6aaa64] rounded-lg text-white font-semibold mt-8 hover:cursor-pointer"
             disabled={loading}
           >
             {loading ? "Logging in..." : "Login"}
