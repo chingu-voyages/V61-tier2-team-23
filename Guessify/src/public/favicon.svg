@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <!-- 1. Define the rounded corners for the app icon tile -->
+    <clipPath id="single-tile">
+      <rect width="100" height="100" rx="20" />
+    </clipPath>
+
+    <!-- 2. Create the drop shadow filter to make the G pop -->
+    <!-- The dx, dy, and stdDeviation control the angle and blur of the shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <!-- 3. Define the massive 'G' so it practically touches the borders -->
+    <text 
+      id="massive-g"
+      x="50%" 
+      y="54%" 
+      font-family="system-ui, -apple-system, Arial, sans-serif" 
+      font-weight="900" 
+      font-size="110" 
+      text-anchor="middle" 
+      dominant-baseline="middle"
+    >G</text>
+  </defs>
+
+  <!-- 4. Draw the 4 colors seamlessly inside the clipped rounded tile -->
+  <g clip-path="url(#single-tile)">
+    <!-- Top Left: Green -->
+    <rect x="0" y="0" width="50" height="50" fill="#6aaa64" />
+    
+    <!-- Top Right: Gray -->
+    <rect x="50" y="0" width="50" height="50" fill="#878a8c" />
+    
+    <!-- Bottom Left: Yellow -->
+    <rect x="0" y="50" width="50" height="50" fill="#c9b458" />
+    
+    <!-- Bottom Right: Dark/Black -->
+    <rect x="50" y="50" width="50" height="50" fill="#18181b" />
+  </g>
+
+  <!-- 5. Draw the solid white G and apply the drop shadow filter -->
+  <use href="#massive-g" fill="#ffffff" filter="url(#shadow)" />
+</svg>

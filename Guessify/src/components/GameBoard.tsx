@@ -162,7 +162,6 @@ function Gameboard() {
             💡 Need a Hint?
           </button>
         )}
-
         {isLoadingHint && (
           <div className="text-indigo-500 dark:text-indigo-400 font-medium animate-pulse">
             ⏳ Brainstorming a clue...
@@ -172,15 +171,12 @@ function Gameboard() {
         {hint && !isLoadingHint && (
           <div className="px-6 py-3 bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/50 rounded-lg max-w-md">
             <p className="text-sm text-indigo-900 dark:text-indigo-200 font-medium">
-              <span className="font-bold text-indigo-600 dark:text-indigo-400 mr-2">
-                💡 Hint:
-              </span>
+              <span className="font-bold text-indigo-600 dark:text-indigo-400 mr-2">💡 Hint:</span>
               {hint}
             </p>
           </div>
         )}
       </div>
-
       <GuessLog currentGuess={currentGuess} prevState={history} />
       <Keyboard onKeyPress={handleKeyPress} letterStatuses={letterStatuses} />
 
