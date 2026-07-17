@@ -7,7 +7,6 @@ import { useUser } from "./context/UserContext";
 const Header = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const { user, setUser } = useUser();
-  console.log(user);
 
   const getCurrentDateFormatted = (): string => {
     const now = new Date();
@@ -56,7 +55,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-[15vh] md:h-[10vh] bg-[#171640] text-white flex flex-col md:flex-row items-start md:items-center text-center justify-between text-[14px] md:text-[16px]">
+    <div className="h-[21vh] md:h-[10vh] bg-[#171640] text-white flex flex-col md:flex-row items-start md:items-center text-center justify-between text-[14px] md:text-[16px]">
       <div className="md:w-60 flex items-center text-center mt-4 md:mt-0">
         <div
           className="flex w-60 ml-[3vw] text-[24px] lg:text-[30px] md:text-[14px] hover:cursor-pointer"
@@ -67,13 +66,13 @@ const Header = () => {
           GUESSIFY
         </div>
       </div>
-      <div className="flex md:justify-center w-60 text-left md:text-center ml-2 md:ml-0 mt-8 md:mt-0 md:text-[14px] lg:text-[16px]">
+      <div className="flex md:justify-center ml-[3vw] md:ml-0 w-60 text-left md:text-center ml-2 md:ml-0 mt-2 md:mt-0 md:text-[14px] lg:text-[16px]">
         {getCurrentDateFormatted()}
       </div>
-      <div className="flex flex-col w-60 md:flex-row items-left md:items-center justify-end">
+      <div className="flex flex-row md:flex-col w-60 md:flex-row items-center md:items-center justify-start md:justify-end mb-1 md:mb-0">
         {!user ? (
           <SettingsIcon
-            className="hover:cursor-pointer mr-[3vw]"
+            className="hover:cursor-pointer ml-[3vw] md:ml-0 mr-[3vw]"
             onClick={() => setSettingsOpen((prev) => !prev)}
           />
         ) : (

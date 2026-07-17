@@ -57,30 +57,30 @@ const Signup = () => {
   }
 
   return (
-    <div className="h-[90vh] bg-[#f3f3f1] dark:bg-[#121213]">
+    <div className="h-[900px] lg:h-[90vh] bg-[#f3f3f1] dark:bg-[#121213]">
       <div className="flex flex-col text-center items-center justify-center">
         <div
-          className="text-[#9da0a1] mt-10 hover:cursor-pointer"
+          className="text-[#9da0a1] text-[14px] md:text-[16px] mt-10 hover:cursor-pointer"
           onClick={() => {
             navigate("/");
           }}
         >
           ⟵ Back to home
         </div>
-        <div className="text-black dark:text-white font-bold text-[40px] mt-4">
+        <div className="text-black dark:text-white font-bold text-[30px] md:text-[40px] mt-4">
           Create account
         </div>
-        <div className="text-[#9da0a1]">
+        <div className="text-[#9da0a1] text-[14px] md:text-[16px]">
           Join GUESSIFY and track your streak
         </div>
         <GoogleLoginButton />
-        <div className="flex items-center w-[500px] mt-6">
+        <div className="flex items-center w-[350px] md:w-[500px] mt-6">
           <div className="flex-1 border-t border-gray-300"></div>
           <span className="px-4 text-xs text-gray-400">OR</span>
           <div className="flex-1 border-t border-gray-300"></div>
         </div>
         <form onSubmit={handleRegister}>
-          <div className="w-[500px] flex flex-col text-start mt-6">
+          <div className="w-[350px] md:w-[500px] flex flex-col text-start mt-6">
             <div className="">
               <p className="text-[10px] font-bold dark:text-gray-600">NAME</p>
               <input
@@ -89,7 +89,7 @@ const Signup = () => {
                 }}
                 required
                 type="text"
-                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-[350px] md:w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
                 placeholder="Ada Chen"
               ></input>
             </div>
@@ -101,7 +101,7 @@ const Signup = () => {
                 }}
                 required
                 type="email"
-                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-[350px] md:w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
                 placeholder="adaChen@email.com"
               ></input>
             </div>
@@ -123,7 +123,7 @@ const Signup = () => {
                 required
                 type="password"
                 placeholder="8+ characters"
-                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-[350px] md:w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
               ></input>
             </div>
             <div className="mt-4">
@@ -137,7 +137,7 @@ const Signup = () => {
                 required
                 type="password"
                 placeholder="8+ characters"
-                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-[350px] md:w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
               ></input>
             </div>
           </div>
@@ -149,7 +149,7 @@ const Signup = () => {
             </div>
           ) : null}
           <button
-            className="w-[500px] p-3 bg-[#6aaa64] rounded-lg text-white font-semibold mt-8 hover:cursor-pointer"
+            className="w-[350px] md:w-[500px] p-3 bg-[#6aaa64] rounded-lg text-white font-semibold mt-8 hover:cursor-pointer"
             disabled={loading}
           >
             {loading ? "Creating..." : "Create Account"}

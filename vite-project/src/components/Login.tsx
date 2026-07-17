@@ -45,7 +45,7 @@ const Login = () => {
   }
 
   return (
-    <div className="h-[90vh] bg-[#f3f3f1] dark:bg-[#121213]">
+    <div className="h-[700px] md:h-[90vh] bg-[#f3f3f1] dark:bg-[#121213]">
       <div className="flex flex-col text-center items-center justify-center">
         <div
           className="text-[#9da0a1] mt-10 hover:cursor-pointer"
@@ -60,19 +60,19 @@ const Login = () => {
         </div>
         <div className="text-[#9da0a1]">Sign in to continue your streak</div>
         <GoogleLoginButton />
-        <div className="flex items-center w-[500px] mt-6">
+        <div className="flex items-center w-[350px] md:w-[500px] mt-6">
           <div className="flex-1 border-t border-gray-300"></div>
           <span className="px-4 text-xs text-gray-400">OR</span>
           <div className="flex-1 border-t border-gray-300"></div>
         </div>
         <form onSubmit={handleLogin}>
-          <div className="w-[500px] flex flex-col text-start mt-6">
+          <div className="w-[350px] md:w-[500px] flex flex-col text-start mt-6">
             <div className="mt-4">
               <p className="text-[10px] font-bold dark:text-gray-600">EMAIL</p>
               <input
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
-                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-[350px] md:w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
                 placeholder="adaChen@email.com"
               ></input>
             </div>
@@ -84,10 +84,10 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="8+ characters"
-                className="w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-[350px] md:w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
               ></input>
             </div>
-            <div className="w-[500px] flex justify-end mt-1">
+            <div className="w-[350px] md:w-[500px] flex justify-end mt-1">
               <p className="text-[10px] font-bold text-[#6aaa64] hover:cursor-pointer">
                 Forgot password?
               </p>
@@ -101,7 +101,7 @@ const Login = () => {
             </div>
           ) : null}
           <button
-            className="w-[500px] p-3 bg-[#6aaa64] rounded-lg text-white font-semibold mt-8 hover:cursor-pointer"
+            className="w-[350px] md:w-[500px] p-3 bg-[#6aaa64] rounded-lg text-white font-semibold mt-8 hover:cursor-pointer"
             disabled={loading}
           >
             {loading ? "Logging in..." : "Login"}

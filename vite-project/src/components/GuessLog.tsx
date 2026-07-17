@@ -17,7 +17,7 @@ const Guesslog = ({ currentGuess, prevState }: BoardProps) => {
   const totalRows = 6;
 
   return (
-    <div className="flex flex-col text-center justify-center text-[20px] mt-20">
+    <div className="flex flex-col text-center justify-center text-[20px] mt-10 md:mt-20">
       {Array.from({ length: totalRows }).map((_, rowIndex) => {
         if (rowIndex < historyEntries.length) {
           const [word, statuses] = historyEntries[rowIndex];
@@ -29,7 +29,7 @@ const Guesslog = ({ currentGuess, prevState }: BoardProps) => {
               {word.split("").map((letter, letterIndex) => (
                 <div
                   key={letterIndex}
-                  className={`flex items-center text-center justify-center w-[80px] h-[80px] font-bold text-[34px] border border-[#d3d6da] first:ml-0 ml-2 ${
+                  className={`flex items-center text-center justify-center w-[60px] h-[60px] md:w-[80px] md:h-[80px] font-bold text-[24px] md:text-[34px] border border-[#d3d6da] first:ml-0 ml-2 ${
                     statusStyles[statuses[letterIndex]] || "bg-white"
                   }`}
                 >
@@ -49,7 +49,7 @@ const Guesslog = ({ currentGuess, prevState }: BoardProps) => {
               {Array.from({ length: 5 }).map((_, letterIndex) => (
                 <div
                   key={letterIndex}
-                  className="flex items-center text-center justify-center w-[80px] h-[80px] bg-white dark:bg-black dark:text-white border border-[#d3d6da] dark:border-black font-bold text-[34px] first:ml-0 ml-2 text-black"
+                  className="flex items-center text-center justify-center w-[60px] h-[60px] md:w-[80px] md:h-[80px] bg-white dark:bg-black dark:text-white border border-[#d3d6da] dark:border-gray-600 font-bold text-[24px] md:text-[34px] first:ml-0 ml-2 text-black"
                 >
                   {currentGuess[letterIndex] || ""}
                 </div>
@@ -66,7 +66,7 @@ const Guesslog = ({ currentGuess, prevState }: BoardProps) => {
             {Array.from({ length: 5 }).map((_, letterIndex) => (
               <div
                 key={letterIndex}
-                className="flex items-center text-center justify-center w-[80px] h-[80px] bg-white dark:bg-black dark:text-white border border-[#d3d6da] dark:border-black font-bold text-[34px] first:ml-0 ml-2"
+                className="flex items-center text-center justify-center w-[60px] h-[60px] md:w-[80px] md:h-[80px] bg-white dark:bg-black dark:text-white border border-[#d3d6da] dark:border-gray-600 font-bold text-[24px] md:text-[34px] first:ml-0 ml-2"
               />
             ))}
           </div>
