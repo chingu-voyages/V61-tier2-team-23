@@ -119,21 +119,21 @@ function Gameboard() {
   }
 
   return (
-    <div className="min-h-[90vh] p-8 bg-[#f3f3f1]">
+    <div className="min-h-[90vh] p-8 bg-[#f3f3f1] dark:bg-[#121213]">
       <div className="flex items-center justify-center text-center">
         {!user ? (
-          <h1 className="w-[500px] text-[40px] font-bold border-b border-2px border-gray-300">
+          <h1 className="w-[500px] text-[40px] dark:text-white font-bold border-b border-2px border-gray-300">
             GUESSIFY
           </h1>
         ) : (
-          <h1 className="w-[500px] text-[40px] font-bold border-b border-2px border-gray-300">
-            Welcome back, <br></br>
+          <h1 className="w-[500px] text-[40px] dark:text-white font-bold border-b border-2px border-gray-300">
+            Welcome, <br></br>
             {user.name}!
           </h1>
         )}
       </div>
 
-      <div className="flex flex-col items-center justify-center text-center">
+      <div className="flex flex-col items-center justify-center text-center dark:text-white">
         <button
           onClick={async () => {
             setIsLoadingHint(true);

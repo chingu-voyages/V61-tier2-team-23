@@ -8,10 +8,10 @@ interface KeyProps {
 
 export function Key({ value, status = "unused", onClick }: KeyProps) {
   const statusStyles = {
-    unused: "bg-[#d3d6da] text-[#202122]",
-    absent: "bg-[#818384] text-[#ededed]",
-    present: "bg-yellow-500 text-white",
-    correct: "bg-green-600 text-white",
+    unused: "bg-[#d3d6da] dark:bg-[#818384] text-[#202122]",
+    absent: "bg-[#818384] dark:bg-[#3a3a3c] text-[#ededed]",
+    present: "bg-yellow-500 dark:bg-yellow-500 text-white",
+    correct: "bg-green-600 dark:bg-green-600 text-white",
   };
 
   const isSpecial = value === "ENTER" || value === "BACKSPACE";
@@ -26,6 +26,7 @@ export function Key({ value, status = "unused", onClick }: KeyProps) {
         select-none
         transition-colors
         hover:cursor-pointer
+        dark:text-white
         ${isSpecial ? "px-4" : "w-10"}
         ${statusStyles[status]}
       `}
