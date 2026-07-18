@@ -8,9 +8,8 @@ interface WinModalProp {
 export function WinModal({ tries, resetGame }: WinModalProp) {
   const { user } = useUser();
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm">
-      <div className="flex flex-col items-center bg-white dark:bg-[#18181b] p-8 rounded-3xl shadow-2xl w-[400px] border border-gray-100 dark:border-transparent">
-
+    <div className="fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm p-4 z-50">
+      <div className="flex flex-col items-center bg-white dark:bg-[#18181b] p-6 md:p-8 rounded-3xl shadow-2xl w-full max-w-[400px] border border-gray-100 dark:border-transparent">
 
         <div className="text-6xl mb-4">🎉</div>
 
@@ -44,7 +43,7 @@ interface LoseModal {
 export function LoseModal({ resetGame, solution }: LoseModal) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm p-4 z-50">
-      <div className="flex flex-col items-center bg-white dark:bg-[#18181b] px-8 py-10 rounded-[32px] shadow-2xl w-full max-w-[450px]">
+      <div className="flex flex-col items-center bg-white dark:bg-[#18181b] px-6 md:px-8 py-8 md:py-10 rounded-[32px] shadow-2xl w-full max-w-[450px]">
 
 
         <div className="text-[72px] leading-none mb-6">😔</div>
@@ -59,7 +58,7 @@ export function LoseModal({ resetGame, solution }: LoseModal) {
 
 
         <div className="w-full bg-[#dce0e5] dark:bg-[#27272a] rounded-2xl py-6 flex items-center justify-center mb-8">
-          <span className="text-4xl font-extrabold text-gray-900 dark:text-white tracking-widest uppercase">
+          <span className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white tracking-widest uppercase">
             {solution}
           </span>
         </div>

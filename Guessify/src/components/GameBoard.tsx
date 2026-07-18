@@ -133,20 +133,7 @@ function Gameboard() {
         )}
       </div>
 
-      {/* <div className="flex flex-col items-center justify-center text-center dark:text-white">
-        <button
-          onClick={async () => {
-            setIsLoadingHint(true);
-            const result = await getHint();
-            setHint(result);
-            setIsLoadingHint(false);
-          }}
-          disabled={isLoadingHint}
-        >
-          Hint
-        </button>
-        {hint && <h3>{isLoadingHint ? "Generating Hint" : hint}</h3>}
-      </div> */}
+      
       <div className="flex flex-col items-center justify-center mt-6 mb-8 min-h-[60px]">
         {!hint && !isLoadingHint && (
           <button
