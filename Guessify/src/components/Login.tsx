@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, resetPassword } from "../services/auth";
 import { getCurrentUser } from "../services/users";
@@ -11,7 +11,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [resetMsg, setResetMsg] = useState<string>("");
+  const [resetMsg, setResetMsg] = useState("");
+  const [resetError, setResetError] = useState(false);
   const navigate = useNavigate();
 
   async function handleLogin(e: React.FormEvent) {
@@ -47,17 +48,33 @@ const Login = () => {
 
   async function handleForgotPassword() {
     if (!email) {
+      setResetError(true);
       setResetMsg("Please Enter Your Email Address Above First.");
       return;
     }
     try {
       await resetPassword(email);
+      setResetError(false);
       setResetMsg("Password reset email sent!");
     } catch (error) {
       console.error(error);
+      setResetError(true);
       setResetMsg("Failed to send reset email. Verify your email.");
     }
   }
+
+  // Removes error msg after 5 seconds
+  useEffect(() => {
+    if (resetMsg || error) {
+      const timer = setTimeout(() => {
+        setResetMsg("");
+        setResetError(false);
+        setError(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [resetMsg, error]);
 
   return (
     <div className="min-h-screen bg-[#f3f3f1] dark:bg-[#121213] py-10">
@@ -114,7 +131,7 @@ const Login = () => {
           </div>
           {resetMsg && (
              <div className="flex text-center items-center justify-center">
-               <h1 className="mt-4 text-sm font-semibold text-[#6aaa64]">
+               <h1 className={`mt-4 text-sm ${resetError ? "text-red-400" : "text-[#6aaa64]"}`}>
                  {resetMsg}
                </h1>
              </div>
