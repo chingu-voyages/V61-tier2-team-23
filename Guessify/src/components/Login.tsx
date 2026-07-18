@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../services/auth";
+import { login, resetPassword } from "../services/auth";
 import { getCurrentUser } from "../services/users";
 import { useUser } from "./context/UserContext";
 import GoogleLoginButton from "./GoogleLogin";
@@ -11,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [resetMsg, setResetMsg] = useState<string>("");
   const navigate = useNavigate();
 
   async function handleLogin(e: React.FormEvent) {
@@ -41,6 +42,20 @@ const Login = () => {
       setError(true);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleForgotPassword() {
+    if (!email) {
+      setResetMsg("Please Enter Your Email Address Above First.");
+      return;
+    }
+    try {
+      await resetPassword(email);
+      setResetMsg("Password reset email sent!");
+    } catch (error) {
+      console.error(error);
+      setResetMsg("Failed to send reset email. Verify your email.");
     }
   }
 
@@ -88,11 +103,22 @@ const Login = () => {
               ></input>
             </div>
             <div className="w-[350px] md:w-[500px] flex justify-end mt-1">
-              <p className="text-[10px] font-bold text-[#6aaa64] hover:cursor-pointer">
+              <button 
+                type="button"
+                className="text-[10px] font-bold text-[#6aaa64] hover:cursor-pointer bg-transparent p-0 border-none"
+                onClick={handleForgotPassword}
+              >
                 Forgot password?
-              </p>
+              </button>
             </div>
           </div>
+          {resetMsg && (
+             <div className="flex text-center items-center justify-center">
+               <h1 className="mt-4 text-sm font-semibold text-[#6aaa64]">
+                 {resetMsg}
+               </h1>
+             </div>
+          )}
           {error === true ? (
             <div className="flex text-center items-center justify-center">
               <h1 className="mt-6 text-sm text-red-400">
