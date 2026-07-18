@@ -17,7 +17,7 @@ const LandingPage = () => {
       <img src={DarkLogo} className="h-40 mt-4 hidden dark:block"></img>
       <div className="flex flex-row">
         <div
-          className="w-[240px] p-3 bg-[#1a1a1b] dark:bg-white text-white dark:text-black font-semibold rounded-lg mr-2 hover:cursor-pointer"
+          className="w-[150px] md:w-[240px] p-3 bg-[#1a1a1b] dark:bg-white text-white dark:text-black font-semibold rounded-lg mr-2 hover:cursor-pointer"
           onClick={() => {
             navigate("/game");
           }}
@@ -25,7 +25,7 @@ const LandingPage = () => {
           Play now
         </div>
         <div
-          className="w-[240px] p-3 bg-[#6aaa64] text-white font-semibold rounded-lg ml-2 hover:cursor-pointer"
+          className="w-[150px] md:w-[240px] p-3 bg-[#6aaa64] text-white font-semibold rounded-lg ml-2 hover:cursor-pointer"
           onClick={() => {
             navigate("/login");
           }}

@@ -20,7 +20,10 @@ export function Key({ value, status = "unused", onClick }: KeyProps) {
     <button
       onClick={() => onClick(value)}
       className={`
-        h-14
+        text-[10px]
+        md:text-[16px]
+        h-10
+        md:h-14
         rounded
         font-semibold
         select-none

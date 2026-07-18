@@ -122,11 +122,11 @@ function Gameboard() {
     <div className="min-h-[90vh] p-8 bg-[#f3f3f1] dark:bg-[#121213]">
       <div className="flex items-center justify-center text-center">
         {!user ? (
-          <h1 className="w-[500px] text-[40px] dark:text-white font-bold border-b border-2px border-gray-300">
+          <h1 className="w-[500px] text-[30px] md:text-[40px] dark:text-white font-bold border-b border-2px border-gray-300">
             GUESSIFY
           </h1>
         ) : (
-          <h1 className="w-[500px] text-[40px] dark:text-white font-bold border-b border-2px border-gray-300">
+          <h1 className="w-[500px] text-[30px] md:text-[40px] dark:text-white font-bold border-b border-2px border-gray-300">
             Welcome, <br></br>
             {user.name}!
           </h1>
@@ -148,7 +148,6 @@ function Gameboard() {
         {hint && <h3>{isLoadingHint ? "Generating Hint" : hint}</h3>}
       </div> */}
       <div className="flex flex-col items-center justify-center mt-6 mb-8 min-h-[60px]">
-
         {!hint && !isLoadingHint && (
           <button
             onClick={async () => {
@@ -163,7 +162,6 @@ function Gameboard() {
             💡 Need a Hint?
           </button>
         )}
-        
         {isLoadingHint && (
           <div className="text-indigo-500 dark:text-indigo-400 font-medium animate-pulse">
             ⏳ Brainstorming a clue...
@@ -173,13 +171,12 @@ function Gameboard() {
         {hint && !isLoadingHint && (
           <div className="px-6 py-3 bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/50 rounded-lg max-w-md">
             <p className="text-sm text-indigo-900 dark:text-indigo-200 font-medium">
-              <span className="font-bold text-indigo-600 dark:text-indigo-400 mr-2">💡 Hint:</span> 
+              <span className="font-bold text-indigo-600 dark:text-indigo-400 mr-2">💡 Hint:</span>
               {hint}
             </p>
           </div>
         )}
       </div>
-      
       <GuessLog currentGuess={currentGuess} prevState={history} />
       <Keyboard onKeyPress={handleKeyPress} letterStatuses={letterStatuses} />
 
