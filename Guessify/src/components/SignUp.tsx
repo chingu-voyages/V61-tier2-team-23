@@ -57,7 +57,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="h-[900px] lg:h-[90vh] bg-[#f3f3f1] dark:bg-[#121213]">
+    <div className="min-h-screen bg-[#f3f3f1] dark:bg-[#121213] py-10">
       <div className="flex flex-col text-center items-center justify-center">
         <div
           className="text-[#9da0a1] text-[14px] md:text-[16px] mt-10 hover:cursor-pointer"
@@ -80,7 +80,7 @@ const Signup = () => {
           <div className="flex-1 border-t border-gray-300"></div>
         </div>
         <form onSubmit={handleRegister}>
-          <div className="w-[350px] md:w-[500px] flex flex-col text-start mt-6">
+          <div className="w-full max-w-[500px] px-6 mx-auto flex flex-col text-start mt-6">
             <div className="">
               <p className="text-[10px] font-bold dark:text-gray-600">NAME</p>
               <input
@@ -89,7 +89,7 @@ const Signup = () => {
                 }}
                 required
                 type="text"
-                className="w-[350px] md:w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-full bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
                 placeholder="Ada Chen"
               ></input>
             </div>
@@ -101,7 +101,7 @@ const Signup = () => {
                 }}
                 required
                 type="email"
-                className="w-[350px] md:w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-full bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
                 placeholder="adaChen@email.com"
               ></input>
             </div>
@@ -123,7 +123,7 @@ const Signup = () => {
                 required
                 type="password"
                 placeholder="8+ characters"
-                className="w-[350px] md:w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-full bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
               ></input>
             </div>
             <div className="mt-4">
@@ -137,7 +137,7 @@ const Signup = () => {
                 required
                 type="password"
                 placeholder="8+ characters"
-                className="w-[350px] md:w-[494px] bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
+                className="w-full bg-white dark:bg-[#121213] dark:text-gray-400 ml-1 mt-2 p-3 px-4 border-1 border-gray-200 dark:border-gray-600 rounded-lg placeholder-[#9da0a1] text-sm focus:outline-none"
               ></input>
             </div>
           </div>

@@ -119,7 +119,7 @@ function Gameboard() {
   }
 
   return (
-    <div className="min-h-[90vh] p-8 bg-[#f3f3f1] dark:bg-[#121213]">
+    <div className="min-h-screen flex-1 p-8 bg-[#f3f3f1] dark:bg-[#121213]">
       <div className="flex items-center justify-center text-center">
         {!user ? (
           <h1 className="w-[500px] text-[30px] md:text-[40px] dark:text-white font-bold border-b border-2px border-gray-300">

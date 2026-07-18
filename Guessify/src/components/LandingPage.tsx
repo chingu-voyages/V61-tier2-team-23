@@ -6,7 +6,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-[90vh] bg-[#f3f3f1] dark:bg-[#121213] flex flex-col text-center items-center">
+    <div className="min-h-screen flex-1 bg-[#f3f3f1] dark:bg-[#121213] flex flex-col text-center items-center">
       <div className="flex text-[50px] font-bold mt-8 dark:text-white">
         GUESSIFY
       </div>
