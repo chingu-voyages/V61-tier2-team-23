@@ -11,7 +11,7 @@ const Footer = () => {
   };
 
   return (
-    <div className="h-[500px] sm:h-[20vh] bg-[#171640] text-white flex flex-col items-center text-center justify-center">
+    <div className="h-auto py-12 sm:min-h-[20vh] bg-[#171640] text-white flex flex-col items-center text-center justify-center">
       <div
         className="mb-[30px] flex items-center text-center hover:cursor-pointer"
         onClick={openInNewTab}
