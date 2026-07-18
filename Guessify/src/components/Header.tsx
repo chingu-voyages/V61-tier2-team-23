@@ -55,10 +55,10 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-[21vh] md:h-[10vh] bg-[#171640] text-white flex flex-col md:flex-row items-start md:items-center text-center justify-between text-[14px] md:text-[16px]">
-      <div className="md:w-60 flex items-center text-center mt-4 md:mt-0">
+    <div className="relative h-16 md:h-[10vh] px-4 bg-[#171640] text-white flex flex-row items-center justify-between text-[12px] md:text-[16px]">
+      <div className="flex items-center text-center">
         <div
-          className="flex w-60 ml-[3vw] text-[24px] lg:text-[30px] md:text-[14px] hover:cursor-pointer"
+          className="flex font-bold text-[16px] md:text-[24px] lg:text-[30px] hover:cursor-pointer"
           onClick={() => {
             navigate("/");
           }}
@@ -66,10 +66,10 @@ const Header = () => {
           GUESSIFY
         </div>
       </div>
-      <div className="flex md:justify-center ml-[3vw] md:ml-0 w-60 text-left md:text-center ml-2 md:ml-0 mt-2 md:mt-0 md:text-[14px] lg:text-[16px]">
+      <div className="static md:absolute md:left-1/2 md:-translate-x-1/2 whitespace-nowrap text-center text-[10px] md:text-[14px]">
         {getCurrentDateFormatted()}
       </div>
-      <div className="flex flex-row md:flex-col w-60 md:flex-row items-center md:items-center justify-start md:justify-end mb-1 md:mb-0">
+      <div className="flex flex-row items-center justify-end gap-2">
         {!user ? (
           <SettingsIcon
             className="hover:cursor-pointer ml-[3vw] md:ml-0 mr-[3vw]"
@@ -78,7 +78,7 @@ const Header = () => {
         ) : (
           <>
             <div className="flex text-center items-center">
-              <div className="w-[100px] flex text-right items-right justify-end md:text-[14px] lg:text-[16px] mr-[10px]">
+              <div className="w-auto truncate max-w-[80px] md:max-w-none flex text-right items-center justify-end text-[10px] md:text-[14px] lg:text-[16px] mr-[4px] md:mr-[10px]">
                 {user.name}
               </div>
               <button
@@ -86,7 +86,7 @@ const Header = () => {
                   setUser(null);
                   navigate("/");
                 }}
-                className="bg-white text-black text-sm p-2 ml-4 mr-4 rounded-md hover:cursor-pointer"
+                className="bg-white text-black text-[10px] md:text-sm p-1 md:p-2 mx-2 md:mx-4 rounded-md hover:cursor-pointer"
               >
                 Logout
               </button>
