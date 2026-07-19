@@ -104,7 +104,7 @@ const Footer = () => {
                 className="hover:cursor-pointer"
                 onClick={() => {
                   window.open(
-                    "https://www.linkedin.com/",
+                    "https://www.linkedin.com/in/nkeirulois",
                     "_blank",
                     "noreferrer",
                   );
