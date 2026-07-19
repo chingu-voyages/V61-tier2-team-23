@@ -81,5 +81,3 @@ http://localhost:5173/
 - Lois Nkeiru (UX/UI Designer):
 - Matthew Neie (Developer): [GitHub](https://github.com/MatthewNeie) / [LinkedIn](https://linkedin.com/in/matthew-neie)
 - Tanishq Patel (Developer): [GitHub](https://github.com/Tanishqkumarpatel) / [LinkedIn](https://linkedin.com/in/tanishqkumarpatel)
-- Matthew Neie (Developer): [GitHub](https://github.com/MatthewNeie) / [LinkedIn](https://linkedin.com/in/matthew-neie)
-- Tanishq Patel (Developer): [GitHub](https://github.com/Tanishqkumarpatel) / [LinkedIn](https://linkedin.com/in/tanishqkumarpatel)
