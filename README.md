@@ -1,41 +1,85 @@
-# voyage-tasks
+# Guessify
 
-Your project's `readme` is as important to success as your code. For 
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
+[SCREENSHOTS]
 
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point - 
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
 
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
+## Deployed
 
-> Own it & Make it your Own!
+[https://https://guessifydev.netlify.app/](https://(https://guessifydev.netlify.app/))
 
-## Team Documents
+## Overview
 
-You may find these helpful as you work together to organize your project.
+[BODY]
 
-- [Team Project Ideas](./docs/team_project_ideas.md)
-- [Team Decision Log](./docs/team_decision_log.md)
+## Features
 
-Meeting Agenda templates (located in the `/docs` directory in this repo):
+**Create Account:** [BODY]
 
-- Meeting - Voyage Kickoff --> ./docs/meeting-voyage_kickoff.docx
-- Meeting - App Vision & Feature Planning --> ./docs/meeting-vision_and_feature_planning.docx
-- Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
-- Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx
+**Sign-In with Google:** [BODY]
+
+**Gameboard:** [BODY]
+
+**Firebase Configuration:** [BODY]
+
+**Gemini AI:** [BODY]
+
+**Secure Passwords:** [BODY]
+
+**Error Handling:** [BODY]
+
+## Tech Stack
+
+<img width="40" height="34" alt="image" src="https://github.com/user-attachments/assets/c10b710a-e807-4ea9-b94e-cd9140356b2a" /> React
+
+<img width="40" height="40" alt="image" src="https://github.com/user-attachments/assets/e778a716-f5ee-40e4-9880-e150895f818d" /> Typescript
+
+<img width="40" height="25" alt="image" src="https://github.com/user-attachments/assets/6189b0c3-f23f-4d83-9b54-642c4960b45e" /> Tailwind CSS
+
+<img width="40" height="40" alt="image" src="https://github.com/user-attachments/assets/097a6fbe-5465-4e6b-818c-fe894c048691" /> Netlify
+
+<img width="40" height="40" alt="image" src="https://github.com/user-attachments/assets/89945268-e822-4c14-884c-e338ab2997e5" /> Firebase
+
+
+
+## Getting Started
+
+Clone the project
+
+```bash
+git clone https://github.com/chingu-voyages/V61-tier2-team-23
+```
+
+## Run the project locally
+
+```bash
+cd Guessify
+```
+
+Create .env and add your keys:
+```bash
+[ENV KEYS]
+```
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+
+Open browser
+
+```bash
+http://localhost:5173/
+```
 
 ## Our Team
-
-Everyone on your team should add their name along with a link to their GitHub
-& optionally their LinkedIn profiles below. Do this in Sprint #1 to validate
-your repo access and to practice PR'ing with your team *before* you start
-coding!
-
+- Shivani Bhardwaj (Scrum Master):
+- Viann Chang (Product Owner):
+- Qudroh (Product Owner):
+- Lois Nkeiru (UX/UI Designer):
 - Matthew Neie (Developer): [GitHub](https://github.com/MatthewNeie) / [LinkedIn](https://linkedin.com/in/matthew-neie)
 - Tanishq Patel (Developer): [GitHub](https://github.com/Tanishqkumarpatel) / [LinkedIn](https://linkedin.com/in/tanishqkumarpatel)
-
-   ...
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Matthew Neie (Developer): [GitHub](https://github.com/MatthewNeie) / [LinkedIn](https://linkedin.com/in/matthew-neie)
+- Tanishq Patel (Developer): [GitHub](https://github.com/Tanishqkumarpatel) / [LinkedIn](https://linkedin.com/in/tanishqkumarpatel)
