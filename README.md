@@ -8,23 +8,23 @@
 
 ## Overview
 
-Guessify is an application where visitors can play a word game similar to wordl and track their games. Users may create an account or sign-in with their Google account and track how many games they played and wins they have achieved. The game can be played on any device and users can use a dark mode layout if prefered. Passwords are securley saved with Firebase Authentication.
+Guessify is an application where visitors can play a word game similar to Wordle and track their games. Users can create an account or sign in with their Google account to track how many games they have played and how many wins they have achieved. The game can be played on any device, and users can enable dark mode if preferred. Passwords are securely stored using Firebase Authentication.
 
 ## Features
 
 **Create Account:** Users may create an account with their name, email, and password.
 
-**Sign-In with Google:** Users may sign-in to their Google account. An account is created on Firebase that matches their Google email so they can come back and continue their progess.
+**Sign-In with Google:** Users can sign in with their Google account. An account is automatically created in Firebase using their Google email address so they can return and continue their progress.
 
-**Gameboard:** Users have 6 attempts to guess the 5 letter word. The word is randomly selected from a list of 500 words at a 9th grade reading level. If the guess contains a letter in the correct spot it is highlighted green, and if the letter exists in the word but is in a different place then it is highlighted yellow. Users may ask Gemini for a hint. Users may also select a hard mode option.
+**Gameboard:** Users have six attempts to guess a five-letter word. The word is randomly selected from a list of 500 words at a ninth-grade reading level. If a guessed letter is in the correct position, it is highlighted in green. If the letter exists in the word but is in a different position, it is highlighted in yellow. Users can request a hint from Gemini and can also enable Hard Mode.
 
-**Firebase DB:** User data and game data are saved in Firebase.
+**Firebase DB:** User and game data are stored in Firebase.
 
-**Secure Passwords:** Email and password combinations are saved in Firebase Authentication and not in the database itself. This ensures passwords do not get leaked in a data breach.
+**Secure Passwords:** Email and password credentials are managed by Firebase Authentication rather than being stored in the database. This helps protect user passwords in the event of a data breach.
 
-**Gemini AI:** Gemini is used in this application to give hints to struggling users.
+**Gemini AI:** Gemini provides hints to users who need additional help during gameplay.
 
-**Dark Mode:** Users may choose to view the website in dark mode. This changes the background to black with white and gray text color. 
+**Dark Mode:** Users can choose to view the application in dark mode, which changes the background to black with white and gray text.
 
 **Error Handling:** The Gameboard contains error handling for users if the input contains not enough letters, or the guessed word is not in the words list. When signing up or logging in, users are also given invalid email/password messages if the account does not match an account in the database.
 
