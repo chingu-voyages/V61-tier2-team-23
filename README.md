@@ -76,13 +76,13 @@ npm install
 ```
 
 ```bash
-npm run dev
+npx netlify dev
 ```
 
 Open browser
 
 ```bash
-http://localhost:5173/
+http://localhost:8888/
 ```
 
 ## Our Team
