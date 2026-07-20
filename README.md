@@ -8,15 +8,15 @@
 
 ## Overview
 
-Guessify is a fun website were visitors can play a word game similar to wordl and track their games. Users may create an account or sign-in with their Google account and track how many games they played and wins they have achieved. The game can be played on any device and users can use a dark mode layout if prefered. Passwords are securley saved with Firebase Auth.
+Guessify is a fun website were visitors can play a word game similar to wordl and track their games. Users may create an account or sign-in with their Google account and track how many games they played and wins they have achieved. The game can be played on any device and users can use a dark mode layout if prefered. Passwords are securley saved with Firebase Authentication.
 
 ## Features
 
-**Create Account:** Users may create an account with name, email, and password.
+**Create Account:** Users may create an account with their name, email, and password.
 
-**Sign-In with Google:** [BODY]
+**Sign-In with Google:** Users may sign-in to their Google account. An account is created on Firebase that matches their Google email so they can come back and continue their progess.
 
-**Gameboard:** [BODY]
+**Gameboard:** Users have 6 attempts to guess the 5 letter word. The word is randomly selected from a list of 500 words at a 9th grade reading level. If the a guess contains a letter in the correct spot it is highlighted green, and if the letter exists in the word but is in a different place then it is highlighted yellow. Users may ask Gemini for a Hint. Users may also select a hard mode option.
 
 **Firebase Configuration:** [BODY]
 
