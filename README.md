@@ -22,7 +22,7 @@ Guessify is a fun website were visitors can play a word game similar to wordl an
 
 **Gemini AI:** Gemini is used in this application to give hints to struggling users.
 
-**Secure Passwords:** Email and Password combinations are saved in Firebase Authentication and not in the database itself. This ensures passwords do not get leaked in a data breach.
+**Secure Passwords:** Email and password combinations are saved in Firebase Authentication and not in the database itself. This ensures passwords do not get leaked in a data breach.
 
 **Error Handling:** [BODY]
 
