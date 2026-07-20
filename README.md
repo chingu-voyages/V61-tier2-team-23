@@ -18,11 +18,11 @@ Guessify is a fun website were visitors can play a word game similar to wordl an
 
 **Gameboard:** Users have 6 attempts to guess the 5 letter word. The word is randomly selected from a list of 500 words at a 9th grade reading level. If the a guess contains a letter in the correct spot it is highlighted green, and if the letter exists in the word but is in a different place then it is highlighted yellow. Users may ask Gemini for a Hint. Users may also select a hard mode option.
 
-**Firebase Configuration:** [BODY]
+**Firebase DB:** User data and game data are saved in Firebase.
 
-**Gemini AI:** [BODY]
+**Gemini AI:** Gemini is used in this application to give hints to struggling users.
 
-**Secure Passwords:** [BODY]
+**Secure Passwords:** Email and Password combinations are saved in Firebase Authentication and not in the database itself. This ensures passwords do not get leaked in a data breach.
 
 **Error Handling:** [BODY]
 
