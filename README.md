@@ -16,7 +16,7 @@ Guessify is a fun website were visitors can play a word game similar to wordl an
 
 **Sign-In with Google:** Users may sign-in to their Google account. An account is created on Firebase that matches their Google email so they can come back and continue their progess.
 
-**Gameboard:** Users have 6 attempts to guess the 5 letter word. The word is randomly selected from a list of 500 words at a 9th grade reading level. If the a guess contains a letter in the correct spot it is highlighted green, and if the letter exists in the word but is in a different place then it is highlighted yellow. Users may ask Gemini for a Hint. Users may also select a hard mode option.
+**Gameboard:** Users have 6 attempts to guess the 5 letter word. The word is randomly selected from a list of 500 words at a 9th grade reading level. If the guess contains a letter in the correct spot it is highlighted green, and if the letter exists in the word but is in a different place then it is highlighted yellow. Users may ask Gemini for a Hint. Users may also select a hard mode option.
 
 **Firebase DB:** User data and game data are saved in Firebase.
 
