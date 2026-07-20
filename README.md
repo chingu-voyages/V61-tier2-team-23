@@ -26,9 +26,9 @@ Guessify is an application where visitors can play a word game similar to Wordle
 
 **Dark Mode:** Users can choose to view the application in dark mode, which changes the background to black with white and gray text.
 
-**Error Handling:** The Gameboard contains error handling for users if the input contains not enough letters, or the guessed word is not in the words list. When signing up or logging in, users are also given invalid email/password messages if the account does not match an account in the database.
+**Error Handling:** The game board includes error handling for invalid input, such as guesses with too few letters or words that are not in the word list. During sign-up and login, users also receive clear error messages for invalid email addresses, incorrect passwords, or accounts that do not exist.
 
-**Responsiveness:** The application can be accessed on mobile, tablet, and desktop.
+**Responsiveness:** The application is fully responsive and can be used on mobile, tablet, and desktop devices.
 
 ## Tech Stack
 
