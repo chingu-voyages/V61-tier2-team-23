@@ -8,7 +8,7 @@
 
 ## Overview
 
-Guessify is a fun website were visitors can play a word game similar to wordl and track their games. Users may create an account or sign-in with their Google account and track how many games they played and wins they have achieved. The game can be played on any device and users can use a dark mode layout if prefered. Passwords are securley saved with Firebase Authentication.
+Guessify is an application were visitors can play a word game similar to wordl and track their games. Users may create an account or sign-in with their Google account and track how many games they played and wins they have achieved. The game can be played on any device and users can use a dark mode layout if prefered. Passwords are securley saved with Firebase Authentication.
 
 ## Features
 
