@@ -1,7 +1,6 @@
 # Guessify
 
-[SCREENSHOTS]
-
+<img width="798" height="613" alt="image" src="https://github.com/user-attachments/assets/5fcb1335-88cb-424a-8c47-8db7303fdf3b" />
 
 ## Deployed
 
@@ -13,7 +12,7 @@ Guessify is a fun website were visitors can play a word game similar to wordl an
 
 ## Features
 
-**Create Account:** Users may create an account with name, email, and password. This gives them the ability to track games.
+**Create Account:** Users may create an account with name, email, and password.
 
 **Sign-In with Google:** [BODY]
 
