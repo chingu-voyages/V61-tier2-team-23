@@ -76,9 +76,9 @@ http://localhost:5173/
 ```
 
 ## Our Team
-- Shivani Bhardwaj (Scrum Master):
-- Viann Chang (Product Owner):
-- Qudroh (Product Owner):
-- Lois Nkeiru (UX/UI Designer):
+- Shivani Bhardwaj (Scrum Master): [GitHub](https://github.com/shivanibhardwaj0911) / [LinkedIn](https://www.linkedin.com/in/shivanibdwj)
+- Viann Chang (Product Owner): [GitHub](https://github.com/vivchc) / [LinkedIn](https://www.linkedin.com/in/vc01)
+- Qudroh (Product Owner): [LinkedIn](https://www.linkedin.com/in/qudroh-kadejo-08ba53319/)
+- Lois Nkeiru (UX/UI Designer): [LinkedIn](https://www.linkedin.com/in/nkeirulois)
 - Matthew Neie (Developer): [GitHub](https://github.com/MatthewNeie) / [LinkedIn](https://linkedin.com/in/matthew-neie)
 - Tanishq Patel (Developer): [GitHub](https://github.com/Tanishqkumarpatel) / [LinkedIn](https://linkedin.com/in/tanishqkumarpatel)
