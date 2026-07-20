@@ -4,7 +4,7 @@
 
 ## Deployed
 
-[https://https://guessifydev.netlify.app/](https://guessifydev.netlify.app/)
+[https://guessifydev.netlify.app/](https://guessifydev.netlify.app/)
 
 ## Overview
 
