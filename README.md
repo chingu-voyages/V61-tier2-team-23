@@ -9,11 +9,11 @@
 
 ## Overview
 
-[BODY]
+Guessify is a fun website were visitors can play a word game similar to WORDL and track their games. Users may create an account or sign-in with their Google account and track how many games they played and wins they have achieved. The game can be played on any device and users can use a dark mode layout if prefered. Passwords are securley saved with Firebase Auth.
 
 ## Features
 
-**Create Account:** [BODY]
+**Create Account:** Users may create an account with name, email, and password. This gives them the ability to track games.
 
 **Sign-In with Google:** [BODY]
 
@@ -26,6 +26,8 @@
 **Secure Passwords:** [BODY]
 
 **Error Handling:** [BODY]
+
+**Responsiveness:** [BODY]
 
 ## Tech Stack
 
