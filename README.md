@@ -16,7 +16,7 @@ Guessify is an application where visitors can play a word game similar to Wordle
 
 **Sign-In with Google:** Users can sign in with their Google account. An account is automatically created in Firebase using their Google email address so they can return and continue their progress.
 
-**Gameboard:** Users have six attempts to guess a five-letter word. The word is randomly selected from a list of 500 words at a ninth-grade reading level. If a guessed letter is in the correct position, it is highlighted in green. If the letter exists in the word but is in a different position, it is highlighted in yellow. Users can request a hint from Gemini and can also enable Hard Mode. In Hard Mode, when a letter is confirmed as correct or present the user must use that letter in all future guesses.
+**Gameboard:** Users have six attempts to guess a five-letter word. The word is randomly selected from a list of 500 words at a ninth-grade reading level. If a guessed letter is in the correct position, it is highlighted in green. If the letter exists in the word but is in a different position, it is highlighted in yellow. Users can request a hint from Gemini and can also enable Hard Mode. In Hard Mode, once a letter is confirmed to be correct or present, the user must include that letter in all future guesses.
 
 **Firebase DB:** User and game data are stored in Firebase.
 
