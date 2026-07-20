@@ -20,13 +20,15 @@ Guessify is a fun website were visitors can play a word game similar to wordl an
 
 **Firebase DB:** User data and game data are saved in Firebase.
 
-**Gemini AI:** Gemini is used in this application to give hints to struggling users.
-
 **Secure Passwords:** Email and password combinations are saved in Firebase Authentication and not in the database itself. This ensures passwords do not get leaked in a data breach.
 
-**Error Handling:** [BODY]
+**Gemini AI:** Gemini is used in this application to give hints to struggling users.
 
-**Responsiveness:** [BODY]
+**Dark Mode:** Users may choose to view the website in dark mode. This changes the background to dark with a white and gray text color. 
+
+**Error Handling:** The Gameboard contains error handling for users if the input contains not enough letters, or the guessed word is not in the words list. When signing up or logging in, users are also given invalid email/password messages if the account does not match.
+
+**Responsiveness:** The application can be accessed on mobile, tablet, and desktop.
 
 ## Tech Stack
 
